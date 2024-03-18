@@ -248,8 +248,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  maxVerticalSpeed: 10
   movementType: 0
   playerName: Leuk
+  body: {fileID: 0}
+  animationStateChangers: []
 --- !u!70 &790656511
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -353,7 +356,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d1a667ab1cc63cd47aebc937cd15c085, type: 3}
+  m_Sprite: {fileID: 8341059545946666274, guid: e3edfa9a995dc6d42a67d655338ef81a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
