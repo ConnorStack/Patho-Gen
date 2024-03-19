@@ -248,8 +248,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  maxVerticalSpeed: 10
   movementType: 0
   playerName: Leuk
+  body: {fileID: 5445373592749949849}
+  animationStateChangers: []
 --- !u!1001 &3521820338359881394
 PrefabInstance:
   m_ObjectHideFlags: 0
