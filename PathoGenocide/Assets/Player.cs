@@ -35,10 +35,12 @@ public class Player : MonoBehaviour
         //set animation
         if(direction != Vector3.zero){
             foreach(AnimationStateChanger asc in animationStateChangers){
+                Debug.Log("Walk clip");
                 asc.ChangeAnimationState("LeukWalk1_Clip");
             }
         }else{
             foreach(AnimationStateChanger asc in animationStateChangers){
+                Debug.Log("Idle clip");
                 asc.ChangeAnimationState("LeukIdle_Clip");
             }
         }
@@ -63,16 +65,10 @@ public class Player : MonoBehaviour
     }
 
     public void MovePlayerRigidBody(Vector3 direction){
-    // Calculate the desired velocity based on input direction
     Vector3 desiredVelocity = new Vector3(direction.x * speed, direction.y * speed, 0);
-
-    // Optionally, you can apply a limit to the vertical movement speed to prevent extreme behavior
     desiredVelocity.y = Mathf.Clamp(desiredVelocity.y, -maxVerticalSpeed, maxVerticalSpeed);
-
-    // Apply the desired velocity to the rigidbody
     rigidBody.velocity = desiredVelocity;
 
-    // Flip the sprite based on horizontal movement
     if(direction.x < 0){
         body.transform.localScale = new Vector3(-1, 1, 1);
     } else if (direction.x > 0) {

@@ -5,19 +5,20 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     public GameObject attackHitbox;
-    public float attackCooldown = 0.5f; // Time between attacks
+    public float attackCooldown = 0.5f; 
     private bool isAttacking = false;
     private float cooldownTimer = 0;
-    // Start is called before the first frame update
+
     void Start()
     {
-        
+        attackHitbox.SetActive(false); // Ensure the hitbox is disabled at the start
+        Debug.Log("attack hitbox set to false.");
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && !isAttacking) // F key to attack
+        if (Input.GetKeyDown(KeyCode.F) && !isAttacking) //Should this just be getkey?
         {
             Debug.Log("F key pressed");
             StartCoroutine(PerformAttack());
@@ -41,5 +42,6 @@ public class PlayerAttack : MonoBehaviour
         attackHitbox.SetActive(true); // Activate the hitbox
         yield return new WaitForSeconds(0.1f); // Duration of the hitbox being active
         attackHitbox.SetActive(false); // Deactivate the hitbox
+        Debug.Log("Deactivating hitbox");
     }
 }
