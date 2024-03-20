@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
         if(direction != Vector3.zero){
             foreach(AnimationStateChanger asc in animationStateChangers){
                 Debug.Log("Walk clip");
-                asc.ChangeAnimationState("LeukWalk1_Clip");
+                asc.ChangeAnimationState("Walk");
             }
         }else{
             foreach(AnimationStateChanger asc in animationStateChangers){

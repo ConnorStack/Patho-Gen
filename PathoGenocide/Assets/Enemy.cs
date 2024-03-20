@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     public int maxHealth = 30;
     private int currentHealth;
@@ -12,12 +12,6 @@ public class EnemyHealth : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-
-
-    void Die()
-    {
-        
-    }
     void OnTriggerEnter2D(Collider2D collider)  
     {
         if (collider.gameObject.CompareTag("PlayerAttack"))
@@ -34,8 +28,14 @@ public class EnemyHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Debug.Log("death");
+            
             Die();
         }
     }
+
+    void Die()
+    {
+        Debug.Log("death");
+    }
+
 }
