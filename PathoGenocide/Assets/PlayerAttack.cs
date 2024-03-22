@@ -9,7 +9,7 @@ public class PlayerAttack : MonoBehaviour
     private float cooldownTimer = 0;
 
     //other approach
-    public Animator animator;
+    public Animator meleeAnimator;
     public Transform meleeHitBox;
     [SerializeField] private float attackRange = 0.5f; // Horizontal reach
     [SerializeField] private float attackHeight = 0.5f; // Vertical reach, adjust as necessary
@@ -20,48 +20,31 @@ public class PlayerAttack : MonoBehaviour
     public int basicAttack = 10;
 
     public float nextAttackTime = 0f;
-    public float attackCooldown = 2f; 
+    public float attackCooldown = 2.5f; 
 
     void Start()
     {
-        attackHitbox.SetActive(false); // Ensure the hitbox is disabled at the start
-        Debug.Log("attack hitbox set to false.");
+
+        // attackHitbox.SetActive(false); // Ensure the hitbox is disabled at the start
+        // Debug.Log("attack hitbox set to false.");
     }
 
 
     void Update()
     {
-        // if (Input.GetKeyDown(KeyCode.F) && !isAttacking) //Should this just be getkey?
-        // {
-        //     Debug.Log("F key pressed");
-        //     Attack();
-        //     // StartCoroutine(PerformAttack());
-        // }
-
-        // if (isAttacking)
-        // {
-        //     cooldownTimer += Time.deltaTime;
-        //     if (cooldownTimer >= attackCooldown)
-        //     {
-        //         isAttacking = false;
-        //         cooldownTimer = 0;
-        //     }
-        // }
-
         if(Time.time >= nextAttackTime)
         {
-            if (Input.GetKeyDown(KeyCode.F)) //Should this just be getkey?
+            if (Input.GetKeyDown(KeyCode.Mouse1)) 
             {
-                Debug.Log("F key pressed");
+                Debug.Log("Mouse key pressed");
                 Attack();
-                nextAttackTime = Time.time + 1f / attackCooldown;
-                // StartCoroutine(PerformAttack());
+                nextAttackTime = Time.time + attackCooldown;
             }
         }
     }
 
     public void Attack(){
-        // animator.SetTrigger ("Attack");
+        meleeAnimator.SetTrigger("BasicAttack");
         Debug.Log("attack");
         attackVector = new Vector2(attackRange, attackHeight);
         Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(meleeHitBox.position, attackVector, enemyLayers);
@@ -83,9 +66,10 @@ public class PlayerAttack : MonoBehaviour
     }
 
     public void OnDrawGizmosSelected(){
-        if(meleeHitBox == null){
-            return;
-        }
-        Gizmos.DrawWireSphere(meleeHitBox.position, attackRange);
+    if(meleeHitBox == null){
+        return;
     }
+    // Assuming attackVector is the size of the box
+    Gizmos.DrawWireCube(meleeHitBox.position, new Vector3(attackRange, attackHeight, 0));
+}
 }

@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        
     }
 
     public void MovePlayer(Vector3 direction){

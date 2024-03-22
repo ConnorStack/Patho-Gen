@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int maxHealth = 30;
+    public int maxHealth = 10;
     private int currentHealth;
 
     void Start()
@@ -36,6 +36,7 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         Debug.Log("death");
+        EnemyPoolController.Instance.ReturnEnemy(gameObject);
     }
 
 }
