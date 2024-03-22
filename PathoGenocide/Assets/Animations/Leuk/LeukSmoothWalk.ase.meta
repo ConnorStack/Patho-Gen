@@ -1,0 +1,595 @@
+fileFormatVersion: 2
+guid: 70d58311a2ebb284299d32c96e120d88
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 32
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  asepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 638467161801277789
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  animatedSpriteImportData:
+  - name: LeukSmoothWalk_Frame_0
+    originalName: 
+    pivot: {x: 0.5, y: -0.032258064}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 66
+      y: 144
+      width: 44
+      height: 62
+    spriteID: 8b22158df24f2344ab41444ce40fad7a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 66, y: 144}
+  - name: LeukSmoothWalk_Frame_1
+    originalName: 
+    pivot: {x: 0.5, y: -0.032258064}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 66
+      y: 214
+      width: 44
+      height: 62
+    spriteID: 1ab7b3e2b62276241922e6365d61690c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 66, y: 214}
+  - name: LeukSmoothWalk_Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: -0.032258064}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 66
+      y: 284
+      width: 44
+      height: 62
+    spriteID: bd6453a83e0f5b14e8724532cca62df2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 66, y: 284}
+  - name: LeukSmoothWalk_Frame_3
+    originalName: 
+    pivot: {x: 0.5, y: -0.032258064}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 66
+      y: 354
+      width: 44
+      height: 62
+    spriteID: 1cb2d3116ff0aea40b82bd6535474e08
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 66, y: 354}
+  - name: LeukSmoothWalk_Frame_4
+    originalName: 
+    pivot: {x: 0.5, y: -0.032258064}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 66
+      y: 424
+      width: 44
+      height: 62
+    spriteID: 64e6648ec2cf45f4282371d6ba001449
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 66, y: 424}
+  - name: LeukSmoothWalk_Frame_5
+    originalName: 
+    pivot: {x: 0.5217391, y: -0.032258064}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 66
+      y: 4
+      width: 46
+      height: 62
+    spriteID: e73a5ed57d4bdc34fa84949a96b4598a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 66, y: 4}
+  - name: LeukSmoothWalk_Frame_6
+    originalName: 
+    pivot: {x: 0.5416667, y: -0.032258064}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 354
+      width: 48
+      height: 62
+    spriteID: cdad9b9255796714696a38359d38afe2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 354}
+  - name: LeukSmoothWalk_Frame_7
+    originalName: 
+    pivot: {x: 0.56, y: -0.032258064}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 214
+      width: 50
+      height: 62
+    spriteID: dd1c9a3bb20afd14e807b31ec8b69c1b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 214}
+  - name: LeukSmoothWalk_Frame_8
+    originalName: 
+    pivot: {x: 0.5769231, y: -0.032258064}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 74
+      width: 52
+      height: 62
+    spriteID: d07a9984c5eabab4f94142e35038950c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 74}
+  - name: LeukSmoothWalk_Frame_9
+    originalName: 
+    pivot: {x: 0.5925926, y: -0.032258064}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 54
+      height: 62
+    spriteID: 4aa785706cc9b4147b1b5d5e8a65940f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: LeukSmoothWalk_Frame_10
+    originalName: 
+    pivot: {x: 0.43137255, y: -0.032258064}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 144
+      width: 51
+      height: 62
+    spriteID: e84751fa4d16bbd43a0d53bbd8c47ba4
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 144}
+  - name: LeukSmoothWalk_Frame_11
+    originalName: 
+    pivot: {x: 0.4489796, y: -0.032258064}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 284
+      width: 49
+      height: 62
+    spriteID: 1bc743af8173c244ca40f468c1a1ddae
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 284}
+  - name: LeukSmoothWalk_Frame_12
+    originalName: 
+    pivot: {x: 0.46808508, y: -0.032258064}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 424
+      width: 47
+      height: 62
+    spriteID: 2d0128876b1e05043bc21cfd3244c757
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 424}
+  - name: LeukSmoothWalk_Frame_13
+    originalName: 
+    pivot: {x: 0.4888889, y: -0.032258064}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 66
+      y: 74
+      width: 45
+      height: 62
+    spriteID: bcf8c6cc740454b42a6f1598156544f5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 66, y: 74}
+  - name: LeukSmoothWalk_Frame_14
+    originalName: 
+    pivot: {x: 0.5, y: -0.032258064}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 120
+      y: 4
+      width: 44
+      height: 62
+    spriteID: 004406805a04dcb4f8d4d839c134b4de
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 120, y: 4}
+  spriteSheetImportData: []
+  asepriteLayers:
+  - layerIndex: 0
+    guid: 245569806
+    name: LeukSmoothWalk
+    layerFlags: 0
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: LeukSmoothWalk_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 10
+        y: 2
+        width: 44
+        height: 62
+      spriteId: 8b22158df24f2344ab41444ce40fad7a
+    - name: LeukSmoothWalk_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 10
+        y: 2
+        width: 44
+        height: 62
+      spriteId: 1ab7b3e2b62276241922e6365d61690c
+    - name: LeukSmoothWalk_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 10
+        y: 2
+        width: 44
+        height: 62
+      spriteId: bd6453a83e0f5b14e8724532cca62df2
+    - name: LeukSmoothWalk_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 10
+        y: 2
+        width: 44
+        height: 62
+      spriteId: 1cb2d3116ff0aea40b82bd6535474e08
+    - name: LeukSmoothWalk_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 10
+        y: 2
+        width: 44
+        height: 62
+      spriteId: 64e6648ec2cf45f4282371d6ba001449
+    - name: LeukSmoothWalk_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 8
+        y: 2
+        width: 46
+        height: 62
+      spriteId: e73a5ed57d4bdc34fa84949a96b4598a
+    - name: LeukSmoothWalk_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 6
+        y: 2
+        width: 48
+        height: 62
+      spriteId: cdad9b9255796714696a38359d38afe2
+    - name: LeukSmoothWalk_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 4
+        y: 2
+        width: 50
+        height: 62
+      spriteId: dd1c9a3bb20afd14e807b31ec8b69c1b
+    - name: LeukSmoothWalk_Frame_8
+      frameIndex: 8
+      cellRect:
+        x: 2
+        y: 2
+        width: 52
+        height: 62
+      spriteId: d07a9984c5eabab4f94142e35038950c
+    - name: LeukSmoothWalk_Frame_9
+      frameIndex: 9
+      cellRect:
+        x: 0
+        y: 2
+        width: 54
+        height: 62
+      spriteId: 4aa785706cc9b4147b1b5d5e8a65940f
+    - name: LeukSmoothWalk_Frame_10
+      frameIndex: 10
+      cellRect:
+        x: 10
+        y: 2
+        width: 51
+        height: 62
+      spriteId: e84751fa4d16bbd43a0d53bbd8c47ba4
+    - name: LeukSmoothWalk_Frame_11
+      frameIndex: 11
+      cellRect:
+        x: 10
+        y: 2
+        width: 49
+        height: 62
+      spriteId: 1bc743af8173c244ca40f468c1a1ddae
+    - name: LeukSmoothWalk_Frame_12
+      frameIndex: 12
+      cellRect:
+        x: 10
+        y: 2
+        width: 47
+        height: 62
+      spriteId: 2d0128876b1e05043bc21cfd3244c757
+    - name: LeukSmoothWalk_Frame_13
+      frameIndex: 13
+      cellRect:
+        x: 10
+        y: 2
+        width: 45
+        height: 62
+      spriteId: bcf8c6cc740454b42a6f1598156544f5
+    - name: LeukSmoothWalk_Frame_14
+      frameIndex: 14
+      cellRect:
+        x: 10
+        y: 2
+        width: 44
+        height: 62
+      spriteId: 004406805a04dcb4f8d4d839c134b4de
+    linkedCells: []
+    parentIndex: -1
+  platformSettings:
+  - name: DefaultTexturePlatform
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Server
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  generatePhysicsShape: 0
+  secondarySpriteTextures: []
+  spritePackingTag: 
+  canvasSize: {x: 64, y: 64}

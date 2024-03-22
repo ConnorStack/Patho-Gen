@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public GameObject attackHitbox;
-    private bool isAttacking = false;
-    private float cooldownTimer = 0;
 
-    //other approach
     public Animator meleeAnimator;
     public Animator specialMeleeAnimator;
+    private Animator bodyAnimator;
     public Transform meleeHitBox;
     [SerializeField] private float attackRange = 0.5f; // Horizontal reach
     [SerializeField] private float attackHeight = 0.5f; // Vertical reach, adjust as necessary
@@ -34,53 +31,81 @@ public class PlayerAttack : MonoBehaviour
 
     void Start()
     {
-
-        // attackHitbox.SetActive(false); // Ensure the hitbox is disabled at the start
-        // Debug.Log("attack hitbox set to false.");
+        bodyAnimator = GetComponentInChildren<Animator>();
     }
 
 
     void Update()
     {
+        HandleBasicMeleeAttack();
+        HandleBasicRangedAttack();
+        HandleSpecialMeleeAttack();
+    }
 
-        //I have to think of a way to give each attack its own cooldown. I dont want teh cooldowns
-        //restricting each other. Each attack should have its own profile
-
+    void HandleBasicMeleeAttack()
+    {
         if (Input.GetKeyDown(KeyCode.Mouse1) && Time.time >= nextBasicMeleeAttackTime)
         {
-            Debug.Log("Basic Melee Attck");
-            Attack(); //rename to basicAttack
+            // Debug.Log("Basic Melee Attack");
+            PerformBasicMeleeAttack();
             nextBasicMeleeAttackTime = Time.time + basicMeleeAttackCooldown;
         }
+    }
 
+    void PerformBasicMeleeAttack()
+    {
+        Debug.Log("Performing Melee Attack Animation");
+        meleeAnimator.SetTrigger("BasicMelee");
+        Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(meleeHitBox.position, new Vector2(attackRange, attackHeight), 0, enemyLayers);
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            Enemy enemyScript = enemy.GetComponent<Enemy>();
+            if (enemyScript != null)
+            {
+                enemyScript.TakeDamage(basicAttack);
+            }
+            else
+            {
+                Debug.LogWarning("Hit object does not have an Enemy component.", enemy.gameObject);
+            }
+        }
+    }
+
+    void HandleBasicRangedAttack()
+    {
         if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time >= nextBasicRangedAttackTime)
         {
-            Debug.Log("Basic Ranged Attack");
+            Debug.Log("Activate Ranged Attack");
+            PerformBasicRangedAttack();
             nextBasicRangedAttackTime = Time.time + basicRangedAttackCooldown;
-            //RangedAttack()
         }
-        if (Input.GetKeyDown(KeyCode.Mouse2))
+    }
+
+    void PerformBasicRangedAttack()
+    {
+        Debug.Log("Perform Ranged Attack");
+    }
+
+    void HandleSpecialMeleeAttack()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time >= nextSpecialMeleeAttackTime)
         {
-            Debug.Log("Special Melee");
+            Debug.Log("Handling spec melee");
+            PerformSpecialMeleeAttack();
+            nextSpecialMeleeAttackTime = Time.time + specialMeleeCooldown;
         }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log("Special Melee");
-        }
-        if (Input.GetKeyDown(KeyCode.Mouse3))
-        {
-            Debug.Log("Special Ranged");
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Debug.Log("Special Ranged");
-        }
+    }
+
+    void PerformSpecialMeleeAttack()
+    {
+        Debug.Log("Perform Special Melee Attack");
+        specialMeleeAnimator.SetTrigger("SpecialMelee");
 
     }
 
     public void Attack()
     {
-        meleeAnimator.SetTrigger("BasicAttack");
+        // meleeAnimator.SetTrigger("BasicAttack");
 
         Debug.Log("attack");
         attackVector = new Vector2(attackRange, attackHeight);
@@ -95,17 +120,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void SpecialMelee()
     {
-        specialMeleeAnimator.SetTrigger("SpecialMelee");
-    }
-
-    private IEnumerator PerformAttack()
-    {
-        Debug.Log("Perform attack");
-        isAttacking = true;
-        attackHitbox.SetActive(true); // Activate the hitbox
-        yield return new WaitForSeconds(0.1f); // Duration of the hitbox being active
-        attackHitbox.SetActive(false); // Deactivate the hitbox
-        Debug.Log("Deactivating hitbox");
+        // specialMeleeAnimator.SetTrigger("SpecialMelee");
     }
 
     public void OnDrawGizmosSelected()

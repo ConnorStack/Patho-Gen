@@ -5,33 +5,39 @@ using UnityEngine;
 public class PlayerConroller : MonoBehaviour
 {
     [SerializeField] Player player;
+
     //Get the Player object
     void Start()
     {
-    //get the appropriate components that the player may utilize
+
     }
 
     void Update()
     {
         Vector3 input = Vector3.zero;
 
-        if(Input.GetKey(KeyCode.W)){
+        if (Input.GetKey(KeyCode.W))
+        {
             input.y += 1;
         }
 
-        if(Input.GetKey(KeyCode.S)){
+        if (Input.GetKey(KeyCode.S))
+        {
             input.y += -1;
         }
 
-        if(Input.GetKey(KeyCode.A)){
+        if (Input.GetKey(KeyCode.A))
+        {
             input.x += -1;
         }
 
-        if(Input.GetKey(KeyCode.D)){
+        if (Input.GetKey(KeyCode.D))
+        {
             input.x += 1;
         }
-        
-        if(player != null){
+
+        if (player != null)
+        {
             player.MovePlayer(input);
         }
     }

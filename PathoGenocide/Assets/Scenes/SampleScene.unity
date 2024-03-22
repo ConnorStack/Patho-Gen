@@ -225,7 +225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &161984245
 Transform:
   m_ObjectHideFlags: 0
@@ -248,7 +248,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 161984244}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -282,15 +282,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 186314849112962934, guid: 775412d983568ac4d8fdef517ce6ab67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.21, y: 0.57}
+  m_Size: {x: 0, y: 0}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &161984247
@@ -301,7 +301,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 161984244}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: -2026476931294594721, guid: d73472c97952b35419115789e70069fe, type: 3}
   m_CullingMode: 0
@@ -421,7 +421,7 @@ Animator:
   m_GameObject: {fileID: 490899375}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: -299483634943343137, guid: f3863d0ecf5e688429e5efe499caf231, type: 3}
+  m_Controller: {fileID: 9100000, guid: 7dcf375c9b10ae0488108331671285bc, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -593,12 +593,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a88a9a1e2179344b869cd49cc3d9ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackHitbox: {fileID: 1754496556}
-  meleeAnimator: {fileID: 161984247}
-  specialMeleeAnimator: {fileID: 2026125886}
   meleeHitBox: {fileID: 1754496557}
-  attackRange: 4
-  attackHeight: 2
+  attackRange: 4.5
+  attackHeight: 3
   attackVector: {x: 0, y: 0}
   enemyLayers:
     serializedVersion: 2
@@ -950,11 +947,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 976672136}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1754496556 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2861888991881350178, guid: fa31b013f0c44d0498d68100dbae2fba, type: 3}
-  m_PrefabInstance: {fileID: 8247263330911967920}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1754496557 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6360535521811407289, guid: fa31b013f0c44d0498d68100dbae2fba, type: 3}
@@ -977,7 +969,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2026125884
 Transform:
   m_ObjectHideFlags: 0
@@ -1000,7 +992,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2026125883}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -1034,15 +1026,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 186314849112962934, guid: 775412d983568ac4d8fdef517ce6ab67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.5, y: 0.5}
+  m_Size: {x: 0, y: 0}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &2026125886
@@ -1053,7 +1045,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2026125883}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 5807146860709036015, guid: b9f1b9f8515d36c41932551c996f4379, type: 3}
   m_CullingMode: 0
@@ -1450,7 +1442,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 901849089323322121, guid: 0ef1ce03600f39b4a8f3e9742524d8a1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.43
+      value: -0.27
       objectReference: {fileID: 0}
     - target: {fileID: 901849089323322121, guid: 0ef1ce03600f39b4a8f3e9742524d8a1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1492,7 +1484,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: MeleeAttack
       objectReference: {fileID: 0}
+    - target: {fileID: 1051445791334283763, guid: 0ef1ce03600f39b4a8f3e9742524d8a1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5143494855724705007, guid: 0ef1ce03600f39b4a8f3e9742524d8a1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5744923871513043759, guid: 0ef1ce03600f39b4a8f3e9742524d8a1, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -1781,6 +1781,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7495331977798448352, guid: 688264f60459ef949b1dea101d637dd1, type: 3}
+    - {fileID: 5556020180721144276, guid: 688264f60459ef949b1dea101d637dd1, type: 3}
     m_RemovedGameObjects:
     - {fileID: 6244206164375349810, guid: 688264f60459ef949b1dea101d637dd1, type: 3}
     m_AddedGameObjects:
@@ -1825,9 +1826,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: MeleeHitBox
       objectReference: {fileID: 0}
+    - target: {fileID: 2861888991881350178, guid: fa31b013f0c44d0498d68100dbae2fba, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6360535521811407289, guid: fa31b013f0c44d0498d68100dbae2fba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.09
+      value: 2.13
       objectReference: {fileID: 0}
     - target: {fileID: 6360535521811407289, guid: fa31b013f0c44d0498d68100dbae2fba, type: 3}
       propertyPath: m_LocalPosition.y

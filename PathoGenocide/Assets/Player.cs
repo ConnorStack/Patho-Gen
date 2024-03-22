@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
 
     public enum PlayerMovementType { tf, physics };
     [SerializeField] PlayerMovementType movementType = PlayerMovementType.tf;
-    
+
     [Header("Physics")]
 
 
@@ -20,21 +20,29 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject body;
     [SerializeField] List<AnimationStateChanger> animationStateChangers;
     Rigidbody2D rigidBody;
+    private Animator bodyAnimator;
+
 
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-        
+        bodyAnimator = GetComponentInChildren<Animator>();
+
+
     }
 
-    public void MovePlayer(Vector3 direction){
+    public void MovePlayer(Vector3 direction)
+    {
 
-        if(movementType == PlayerMovementType.tf){ //Probably can delete
-            MovePlayerTransform(direction);
+        // if (movementType == PlayerMovementType.tf)
+        // { //Probably can delete
+        //     // MovePlayerTransform(direction);
 
-        }else if (movementType == PlayerMovementType.physics){
-            MovePlayerRigidBody(direction);
-        }
+        // }
+        // else if (movementType == PlayerMovementType.physics)
+        // {
+        MovePlayerRigidBody(direction);
+        // }
 
         //set animation
         // if(direction != Vector3.zero){
@@ -50,14 +58,20 @@ public class Player : MonoBehaviour
         // }
     }
 
-    public void MovePlayerTransform(Vector3 direction){
-        transform.position += direction * Time.deltaTime * speed;
-        if (direction.x < 0){
-            body.transform.localScale = new Vector3(-1, 1, 1); // Flip left
-        } else if (direction.x > 0) {
-            body.transform.localScale = new Vector3(1, 1, 1); // Flip right
-        }
-    }
+    // public void MovePlayerTransform(Vector3 direction)
+    // {
+    //     Debug.Log("Transform movement");
+    //     transform.position += direction * Time.deltaTime * speed;
+    //     if (direction.x < 0)
+    //     {
+    //         body.transform.localScale = new Vector3(-1, 1, 1); // Flip left
+    //     }
+    //     else if (direction.x > 0)
+    //     {
+    //         body.transform.localScale = new Vector3(1, 1, 1); // Flip right
+    //     }
+
+    // }
 
     // public void MovePlayerRigidBody2(Vector3 direction){
     //     Vector3 currentVelocity = new Vector3(0, rigidBody.velocity.y, 0);
@@ -68,15 +82,30 @@ public class Player : MonoBehaviour
     //     }
     // }
 
-    public void MovePlayerRigidBody(Vector3 direction){
-    Vector3 desiredVelocity = new Vector3(direction.x * speed, direction.y * speed, 0);
-    desiredVelocity.y = Mathf.Clamp(desiredVelocity.y, -maxVerticalSpeed, maxVerticalSpeed);
-    rigidBody.velocity = desiredVelocity;
+    public void MovePlayerRigidBody(Vector3 direction)
+    {
+        // Debug.Log("RigidBody");
+        // bodyAnimator.SetTrigger("Walk");
+        Vector3 desiredVelocity = new Vector3(direction.x * speed, direction.y * speed, 0);
+        desiredVelocity.y = Mathf.Clamp(desiredVelocity.y, -maxVerticalSpeed, maxVerticalSpeed);
+        rigidBody.velocity = desiredVelocity;
 
-    if(direction.x < 0){
-        body.transform.localScale = new Vector3(-1, 1, 1);
-    } else if (direction.x > 0) {
-        body.transform.localScale = new Vector3(1, 1, 1);
+        if (direction.x < 0)
+        {
+            body.transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else if (direction.x > 0)
+        {
+            body.transform.localScale = new Vector3(1, 1, 1);
+        }
+
+        if (direction != Vector3.zero)
+        {
+            bodyAnimator.SetTrigger("Walk");
+        }
+        else
+        {
+            bodyAnimator.SetTrigger("Idle");
+        }
     }
-}
 }
