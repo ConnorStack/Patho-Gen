@@ -6,18 +6,19 @@ public class Enemy : MonoBehaviour
 {
     public int maxHealth = 10;
     private int currentHealth;
+    public Animator deathAnimator;
 
     void Start()
     {
         currentHealth = maxHealth;
     }
 
-    void OnTriggerEnter2D(Collider2D collider)  
+    void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("PlayerAttack"))
         {
             Debug.Log("taken damage");
-            TakeDamage(10); 
+            TakeDamage(10);
         }
     }
 
@@ -28,7 +29,7 @@ public class Enemy : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            
+
             Die();
         }
     }
@@ -36,6 +37,7 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         Debug.Log("death");
+        deathAnimator.SetTrigger("Death");
         EnemyPoolController.Instance.ReturnEnemy(gameObject);
     }
 

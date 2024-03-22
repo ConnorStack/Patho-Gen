@@ -30,6 +30,7 @@ public class PlayerConroller : MonoBehaviour
         if(Input.GetKey(KeyCode.D)){
             input.x += 1;
         }
+        
         if(player != null){
             player.MovePlayer(input);
         }

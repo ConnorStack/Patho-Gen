@@ -28,23 +28,26 @@ public class Player : MonoBehaviour
     }
 
     public void MovePlayer(Vector3 direction){
-        if(movementType == PlayerMovementType.tf){
+
+        if(movementType == PlayerMovementType.tf){ //Probably can delete
             MovePlayerTransform(direction);
+
         }else if (movementType == PlayerMovementType.physics){
             MovePlayerRigidBody(direction);
         }
+
         //set animation
-        if(direction != Vector3.zero){
-            foreach(AnimationStateChanger asc in animationStateChangers){
-                Debug.Log("Walk clip");
-                asc.ChangeAnimationState("Walk");
-            }
-        }else{
-            foreach(AnimationStateChanger asc in animationStateChangers){
-                Debug.Log("Idle clip");
-                asc.ChangeAnimationState("LeukIdle_Clip");
-            }
-        }
+        // if(direction != Vector3.zero){
+        //     foreach(AnimationStateChanger asc in animationStateChangers){
+        //         Debug.Log("Walk clip");
+        //         asc.ChangeAnimationState("Walk");
+        //     }
+        // }else{
+        //     foreach(AnimationStateChanger asc in animationStateChangers){
+        //         Debug.Log("Idle clip");
+        //         asc.ChangeAnimationState("LeukIdle_Clip");
+        //     }
+        // }
     }
 
     public void MovePlayerTransform(Vector3 direction){
@@ -56,14 +59,14 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void MovePlayerRigidBody2(Vector3 direction){
-        Vector3 currentVelocity = new Vector3(0, rigidBody.velocity.y, 0);
-        rigidBody.velocity = (currentVelocity) + (direction * speed);
-        if(rigidBody.velocity.x < 0){
-            body.transform.localScale = new Vector3(-1, 1, 1);
-            Debug.Log("Flip!");
-        }
-    }
+    // public void MovePlayerRigidBody2(Vector3 direction){
+    //     Vector3 currentVelocity = new Vector3(0, rigidBody.velocity.y, 0);
+    //     rigidBody.velocity = (currentVelocity) + (direction * speed);
+    //     if(rigidBody.velocity.x < 0){
+    //         body.transform.localScale = new Vector3(-1, 1, 1);
+    //         Debug.Log("Flip!");
+    //     }
+    // }
 
     public void MovePlayerRigidBody(Vector3 direction){
     Vector3 desiredVelocity = new Vector3(direction.x * speed, direction.y * speed, 0);
