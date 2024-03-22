@@ -9,8 +9,8 @@ public class PlayerAttack : MonoBehaviour
     public Animator specialMeleeAnimator;
     private Animator bodyAnimator;
     public Transform meleeHitBox;
-    [SerializeField] private float attackRange = 0.5f; // Horizontal reach
-    [SerializeField] private float attackHeight = 0.5f; // Vertical reach, adjust as necessary
+    [SerializeField] private float attackRange = 0.5f;
+    [SerializeField] private float attackHeight = 0.5f;
 
     public Vector2 attackVector;
     public LayerMask enemyLayers;
@@ -101,26 +101,6 @@ public class PlayerAttack : MonoBehaviour
         Debug.Log("Perform Special Melee Attack");
         specialMeleeAnimator.SetTrigger("SpecialMelee");
 
-    }
-
-    public void Attack()
-    {
-        // meleeAnimator.SetTrigger("BasicAttack");
-
-        Debug.Log("attack");
-        attackVector = new Vector2(attackRange, attackHeight);
-        Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(meleeHitBox.position, attackVector, enemyLayers);
-
-        foreach (Collider2D enemy in hitEnemies)
-        {
-            enemy.GetComponent<Enemy>().TakeDamage(basicAttack);
-        }
-        //https://www.youtube.com/watch?v=sPiVz1k-fEs&t=255s&ab_channel=Brackeys
-    }
-
-    public void SpecialMelee()
-    {
-        // specialMeleeAnimator.SetTrigger("SpecialMelee");
     }
 
     public void OnDrawGizmosSelected()

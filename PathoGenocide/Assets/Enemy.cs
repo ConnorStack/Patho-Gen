@@ -26,10 +26,8 @@ public class Enemy : MonoBehaviour
     {
         currentHealth -= damage;
         Debug.Log("Health " + currentHealth);
-
         if (currentHealth <= 0)
         {
-
             Die();
         }
     }
@@ -40,5 +38,4 @@ public class Enemy : MonoBehaviour
         deathAnimator.SetTrigger("Death");
         EnemyPoolController.Instance.ReturnEnemy(gameObject);
     }
-
 }
