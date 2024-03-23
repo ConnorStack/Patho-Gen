@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-
+    public GameObject projectilePrefab;
     public Animator meleeAnimator;
     public Animator specialMeleeAnimator;
     private Animator bodyAnimator;
     public Transform meleeHitBox;
+    public Transform projectileOrigin;
     [SerializeField] private float attackRange = 0.5f;
     [SerializeField] private float attackHeight = 0.5f;
 
@@ -84,6 +85,13 @@ public class PlayerAttack : MonoBehaviour
     void PerformBasicRangedAttack()
     {
         Debug.Log("Perform Ranged Attack");
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition.z = 0; // Ensure the z position is not affecting the direction
+
+        Vector2 shootingDirection = mousePosition - projectileOrigin.position;
+
+        GameObject projectile = Instantiate(projectilePrefab, projectileOrigin.position, Quaternion.identity);
+        projectile.GetComponent<Projectile>().direction = shootingDirection;
     }
 
     void HandleSpecialMeleeAttack()
