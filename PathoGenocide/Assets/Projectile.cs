@@ -14,6 +14,11 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        Destroy(gameObject); // Destroy the projectile upon collision
+        ProjectilePoolController.Instance.ReturnProjectile(gameObject);
+    }
+
+    private void OnBecameInvisible()
+    {
+        ProjectilePoolController.Instance.ReturnProjectile(gameObject);
     }
 }

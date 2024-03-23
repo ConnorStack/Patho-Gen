@@ -85,13 +85,17 @@ public class PlayerAttack : MonoBehaviour
     void PerformBasicRangedAttack()
     {
         Debug.Log("Perform Ranged Attack");
+        GameObject projectile = ProjectilePoolController.Instance.GetProjectile();
+        projectile.transform.position = transform.position; // Or shooting point position
+        projectile.GetComponent<Projectile>().direction = CalculateShootingDirection();
+
+    }
+    Vector2 CalculateShootingDirection()
+    {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0; // Ensure the z position is not affecting the direction
-
         Vector2 shootingDirection = mousePosition - projectileOrigin.position;
-
-        GameObject projectile = Instantiate(projectilePrefab, projectileOrigin.position, Quaternion.identity);
-        projectile.GetComponent<Projectile>().direction = shootingDirection;
+        return shootingDirection;
     }
 
     void HandleSpecialMeleeAttack()
