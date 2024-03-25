@@ -23,19 +23,22 @@ public class ProjectilePoolController : MonoBehaviour
             GameObject projectile = Instantiate(projectilePrefab, Vector3.zero, Quaternion.identity);
             projectile.SetActive(false);
             projectilePool.Enqueue(projectile);
+            Debug.Log("Enqueue");
         }
     }
 
     public GameObject GetProjectile()
     {
-        if (poolSize > 0)
+        if (projectilePool.Count > 0)
         {
+            Debug.Log("Get Projectile, pool not empty");
             GameObject projectile = projectilePool.Dequeue();
             projectile.SetActive(true);
             return projectile;
         }
         else
         {
+            Debug.Log("Pool Empty");
             GameObject newProjectile = Instantiate(projectilePrefab, Vector3.zero, Quaternion.identity);
             return newProjectile;
         }

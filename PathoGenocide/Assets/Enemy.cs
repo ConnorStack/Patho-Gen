@@ -6,11 +6,12 @@ public class Enemy : MonoBehaviour
 {
     public int maxHealth = 10;
     private int currentHealth;
-    public Animator deathAnimator;
+    private Animator bodyAnimator;
 
     void Start()
     {
         currentHealth = maxHealth;
+        bodyAnimator = GetComponentInChildren<Animator>();
     }
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -35,7 +36,7 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         Debug.Log("death");
-        deathAnimator.SetTrigger("Death");
+        bodyAnimator.SetTrigger("Die");
         EnemyPoolController.Instance.ReturnEnemy(gameObject);
     }
 }
