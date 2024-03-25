@@ -12,6 +12,7 @@ public class PlayerAttack : MonoBehaviour
     public Transform projectileOrigin;
     [SerializeField] private float attackRange = 0.5f;
     [SerializeField] private float attackHeight = 0.5f;
+    [SerializeField] float specialAttackRadius = 3.0f;
 
     public Vector2 attackVector;
     public LayerMask enemyLayers;
@@ -41,6 +42,7 @@ public class PlayerAttack : MonoBehaviour
         HandleBasicMeleeAttack();
         HandleBasicRangedAttack();
         HandleSpecialMeleeAttack();
+        HandleSpecialRangedAttack();
     }
 
     void HandleBasicMeleeAttack()
@@ -112,7 +114,29 @@ public class PlayerAttack : MonoBehaviour
     {
         Debug.Log("Perform Special Melee Attack");
         specialMeleeAnimator.SetTrigger("SpecialMelee");
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, specialAttackRadius, enemyLayers);
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            Enemy enemyScript = enemy.GetComponent<Enemy>();
+            if (enemyScript != null)
+            {
+                enemyScript.TakeDamage(basicAttack); // Or a different damage value for the special attack
+            }
+        }
+    }
 
+    void HandleSpecialRangedAttack()
+    {
+        if (Input.GetKeyDown(KeyCode.F) && Time.time >= nextSpecialRangedAttackTime)
+        {
+            Debug.Log("Handling spec ranged");
+            PerformSpecialRangedAttack();
+        }
+    }
+
+    void PerformSpecialRangedAttack()
+    {
+        Debug.Log("Performing spec ranged");
     }
 
     public void OnDrawGizmosSelected()
@@ -123,5 +147,7 @@ public class PlayerAttack : MonoBehaviour
         }
         // Assuming attackVector is the size of the box
         Gizmos.DrawWireCube(meleeHitBox.position, new Vector3(attackRange, attackHeight, 0));
+        Gizmos.color = Color.red; // Color the special attack range differently to distinguish it
+        Gizmos.DrawWireSphere(transform.position, specialAttackRadius);
     }
 }

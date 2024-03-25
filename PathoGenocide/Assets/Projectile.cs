@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float speed = 10f;
+    public float speed = 15f;
     public Vector2 direction;
+    public bool isSpecial = false;
+    public float specialDamage = 50f;
 
     void Update()
     {
@@ -14,6 +16,16 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
+        if (hitInfo.gameObject.CompareTag("Enemy"))
+        {
+            Enemy enemy = hitInfo.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(10);
+            }
+        }
+
+        // Return the projectile to the pool regardless of what it hits
         ProjectilePoolController.Instance.ReturnProjectile(gameObject);
     }
 

@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
     [Header("Stats")]
     [SerializeField] float speed = 5f;
     [SerializeField] float maxVerticalSpeed = 10;
+    public int currentHealth = 100;
     public enum PlayerMovementType { tf, physics };
     [SerializeField] PlayerMovementType movementType = PlayerMovementType.tf;
     [Header("Physics")]
@@ -17,6 +19,8 @@ public class Player : MonoBehaviour
     [SerializeField] List<AnimationStateChanger> animationStateChangers;
     Rigidbody2D rigidBody;
     private Animator bodyAnimator;
+    public GameOverMenuController gameOverController;
+
 
     void Start()
     {
@@ -52,5 +56,44 @@ public class Player : MonoBehaviour
         {
             bodyAnimator.SetTrigger("Idle");
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        Debug.Log("Player has taken damage. Health " + currentHealth);
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        bodyAnimator.SetTrigger("Die");
+        Debug.Log("Player died.");
+        // gameOverController.ShowGameOverMenu();
+        StartCoroutine(ShowDeathAnimationAndGameOver());
+    }
+
+    private IEnumerator ShowDeathAnimationAndGameOver()
+    {
+        // Assuming the death animation lasts for 2 seconds
+        yield return new WaitForSeconds(1);
+        gameOverController.ShowGameOverMenu();
+        // Freeze the game
+        // Time.timeScale = 0;
+
+        // Activate the Game Over menu
+        // gameOverMenu.SetActive(true); // Make sure you have a reference to your Game Over menu canvas
+    }
+
+    public void ExitToMainMenu()
+    {
+        // Unfreeze the game
+        Time.timeScale = 1;
+
+        // Load your main menu scene by its name
+        SceneManager.LoadScene("MainMenuSceneName");
     }
 }

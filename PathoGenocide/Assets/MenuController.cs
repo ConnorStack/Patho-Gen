@@ -17,4 +17,14 @@ public class MenuController : MonoBehaviour
         // For example, to load an Instructions scene: SceneManager.LoadScene("InstructionsSceneName");
         Debug.Log("Open instructions");
     }
+
+    public void QuitGame()
+    {
+        // If running in the Unity Editor
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
 }

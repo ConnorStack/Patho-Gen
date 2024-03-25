@@ -45,11 +45,6 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        // If running in the Unity Editor
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
+        SceneManager.LoadScene("MainMenu");
     }
 }
