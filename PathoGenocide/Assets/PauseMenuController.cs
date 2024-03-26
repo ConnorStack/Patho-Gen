@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.SceneManagement; // Needed for loading scenes
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -32,14 +32,12 @@ public class PauseMenu : MonoBehaviour
     void Pause()
     {
         pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f; // Freezes the game
+        Time.timeScale = 0f;
         isPaused = true;
     }
 
     public void LoadInstructions()
     {
-        // Logic to display instructions
-        // This could be enabling another UI panel that contains your instructions.
         Debug.Log("Load instructions here.");
     }
 

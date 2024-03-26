@@ -4,26 +4,22 @@ using UnityEngine;
 
 public class SpawnerController : MonoBehaviour
 {
-    public GameObject[] spawners; // Assign your spawners in the inspector
+    public GameObject[] spawners;
     private int currentPhase = 0;
-    private float phaseDuration = 60f; // Duration of each phase in seconds
+    private float phaseDuration = 60f;
 
     private void Start()
     {
-        ActivateSpawner(0); // Activate the first spawner at the start
+        ActivateSpawner(0);
     }
 
     private void Update()
     {
-        // Determine the current phase based on the elapsed time
         int phase = Mathf.FloorToInt(Time.time / phaseDuration);
 
-        // Check if we've moved to the next phase
         if (phase != currentPhase)
         {
-            // Deactivate the previous spawner
             DeactivateSpawner(currentPhase);
-            // Activate the next spawner
             ActivateSpawner(phase);
             currentPhase = phase;
         }

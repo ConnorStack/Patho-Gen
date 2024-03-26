@@ -7,13 +7,11 @@ public class GameOverMenuController : MonoBehaviour
 {
     public GameObject gameOverMenuUI;
 
-    // Start is called before the first frame update
     void Start()
     {
         gameOverMenuUI.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -22,12 +20,12 @@ public class GameOverMenuController : MonoBehaviour
     public void ShowGameOverMenu()
     {
         gameOverMenuUI.SetActive(true);
-        Time.timeScale = 0f; // Freeze the game
+        Time.timeScale = 0f;
     }
 
     public void QuitToMainMenu()
     {
-        Time.timeScale = 1f; // Unfreeze the game
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
 }

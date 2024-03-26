@@ -21,11 +21,9 @@ public class Projectile : MonoBehaviour
             Enemy enemy = hitInfo.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.TakeDamage(10); // Assuming every projectile deals 10 damage
+                enemy.TakeDamage(10);
             }
         }
-
-        // Return the projectile to the pool regardless of what it hits
         ProjectilePoolController.Instance.ReturnProjectile(gameObject);
     }
 

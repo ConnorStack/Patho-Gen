@@ -6,23 +6,22 @@ public class CircularSpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public float spawnRate = 0.2f;
-    public float rotationSpeed = 20f; // Degrees per second
+    public float rotationSpeed = 20f;
     public float spawnRadius = 20f;
-    public float spawnDuration = 20f; // Duration to spawn for
+    public float spawnDuration = 20f;
     private float nextSpawnTime;
-    private float spawnStartTime; // Time when spawning should start
-    private float spawnEndTime; // Time when spawning should end
-    private bool isSpawningActive = false; // Is the spawner currently active?
+    private float spawnStartTime;
+    private float spawnEndTime;
+    private bool isSpawningActive = false;
 
     private void Start()
     {
-        spawnStartTime = Time.time + 40f; // Set to start after 40 seconds
-        spawnEndTime = spawnStartTime + spawnDuration; // Set to end after spawnDuration
+        spawnStartTime = Time.time + 40f;
+        spawnEndTime = spawnStartTime + spawnDuration;
     }
 
     private void Update()
     {
-        // Check if within the spawn period
         if (Time.time >= spawnStartTime && Time.time <= spawnEndTime)
         {
             isSpawningActive = true;
@@ -32,11 +31,9 @@ public class CircularSpawner : MonoBehaviour
             isSpawningActive = false;
         }
 
-        // If the spawner is active, move in a circle and spawn enemies
         if (isSpawningActive)
         {
-            // Update the spawner's position to move in a circle
-            float angle = (Time.time - spawnStartTime) * rotationSpeed; // Adjusted to start angle based on spawnStartTime
+            float angle = (Time.time - spawnStartTime) * rotationSpeed;
             float x = Mathf.Cos(angle * Mathf.Deg2Rad) * spawnRadius;
             float y = Mathf.Sin(angle * Mathf.Deg2Rad) * spawnRadius;
             transform.position = new Vector3(x, y, 0f);
@@ -51,11 +48,11 @@ public class CircularSpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        GameObject enemy = EnemyPoolController.Instance.GetEnemy(); // Fetch an enemy from the pool
+        GameObject enemy = EnemyPoolController.Instance.GetEnemy();
         if (enemy != null)
         {
-            enemy.transform.position = transform.position; // Position enemy at spawner's location
-            enemy.SetActive(true); // Make the enemy active
+            enemy.transform.position = transform.position;
+            enemy.SetActive(true);
         }
     }
 }

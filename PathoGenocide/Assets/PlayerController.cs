@@ -6,7 +6,6 @@ public class PlayerConroller : MonoBehaviour
 {
     [SerializeField] Player player;
 
-    //Get the Player object
     void Start()
     {
 

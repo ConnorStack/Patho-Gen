@@ -24,10 +24,7 @@ public class EnemyController : MonoBehaviour
     {
         if (playerTransform != null)
         {
-            // Calculate direction vector from enemy to player
             Vector2 direction = (playerTransform.position - transform.position).normalized;
-
-            // Move the enemy towards the player
             rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
         }
     }

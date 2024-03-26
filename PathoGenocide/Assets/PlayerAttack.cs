@@ -49,7 +49,6 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse1) && Time.time >= nextBasicMeleeAttackTime)
         {
-            // Debug.Log("Basic Melee Attack");
             PerformBasicMeleeAttack();
             nextBasicMeleeAttackTime = Time.time + basicMeleeAttackCooldown;
         }
@@ -88,14 +87,14 @@ public class PlayerAttack : MonoBehaviour
     {
         Debug.Log("Perform Ranged Attack");
         GameObject projectile = ProjectilePoolController.Instance.GetProjectile();
-        projectile.transform.position = transform.position; // Or shooting point position
+        projectile.transform.position = transform.position;
         projectile.GetComponent<Projectile>().direction = CalculateShootingDirection();
 
     }
     Vector2 CalculateShootingDirection()
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePosition.z = 0; // Ensure the z position is not affecting the direction
+        mousePosition.z = 0;
         Vector2 shootingDirection = mousePosition - projectileOrigin.position;
         return shootingDirection;
     }
@@ -120,7 +119,7 @@ public class PlayerAttack : MonoBehaviour
             Enemy enemyScript = enemy.GetComponent<Enemy>();
             if (enemyScript != null)
             {
-                enemyScript.TakeDamage(basicAttack); // Or a different damage value for the special attack
+                enemyScript.TakeDamage(basicAttack);
             }
         }
     }
@@ -145,9 +144,9 @@ public class PlayerAttack : MonoBehaviour
         {
             return;
         }
-        // Assuming attackVector is the size of the box
+
         Gizmos.DrawWireCube(meleeHitBox.position, new Vector3(attackRange, attackHeight, 0));
-        Gizmos.color = Color.red; // Color the special attack range differently to distinguish it
+        Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, specialAttackRadius);
     }
 }

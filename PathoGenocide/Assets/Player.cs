@@ -61,7 +61,6 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        // Debug.Log("Player has taken damage. Health " + currentHealth);
         if (currentHealth <= 0)
         {
             Die();
@@ -71,29 +70,18 @@ public class Player : MonoBehaviour
     private void Die()
     {
         bodyAnimator.SetTrigger("Die");
-        // Debug.Log("Player died.");
-        // gameOverController.ShowGameOverMenu();
         StartCoroutine(ShowDeathAnimationAndGameOver());
     }
 
     private IEnumerator ShowDeathAnimationAndGameOver()
     {
-        // Assuming the death animation lasts for 2 seconds
         yield return new WaitForSeconds(1);
         gameOverController.ShowGameOverMenu();
-        // Freeze the game
-        // Time.timeScale = 0;
-
-        // Activate the Game Over menu
-        // gameOverMenu.SetActive(true); // Make sure you have a reference to your Game Over menu canvas
     }
 
     public void ExitToMainMenu()
     {
-        // Unfreeze the game
         Time.timeScale = 1;
-
-        // Load your main menu scene by its name
         SceneManager.LoadScene("MainMenuSceneName");
     }
 }

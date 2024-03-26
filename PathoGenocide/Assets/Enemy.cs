@@ -66,23 +66,21 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public int maxHealth = 10;
-    public bool followPlayer = true; // Toggle this in the Inspector
-    public float moveSpeed = 5f; // Speed at which the enemy moves towards the player
-
+    public bool followPlayer = true;
+    public float moveSpeed = 5f;
     private int currentHealth;
     private Animator bodyAnimator;
-    private Transform playerTransform; // To store the player's transform
+    private Transform playerTransform;
 
     void Start()
     {
         currentHealth = maxHealth;
         bodyAnimator = GetComponentInChildren<Animator>();
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform; // Assuming your player has the tag "Player"
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Update()
     {
-        // Follow player if toggled on
         if (followPlayer && playerTransform != null)
         {
             FollowPlayer();
@@ -91,7 +89,6 @@ public class Enemy : MonoBehaviour
 
     void FollowPlayer()
     {
-        // Simple follow logic - moves towards the player each frame
         transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, moveSpeed * Time.deltaTime);
     }
 
@@ -99,7 +96,6 @@ public class Enemy : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("PlayerAttack"))
         {
-            // Debug.Log("taken damage");
             TakeDamage(10);
         }
         else if (collider.gameObject.CompareTag("Player"))
@@ -107,9 +103,9 @@ public class Enemy : MonoBehaviour
             Player player = collider.GetComponent<Player>();
             if (player != null)
             {
-                player.TakeDamage(10); // Example damage amount
+                player.TakeDamage(10);
             }
-            Die(); // Optionally, remove this if enemies should not die upon colliding with the player
+            Die();
         }
     }
 
@@ -124,7 +120,6 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
-        // Debug.Log("Enemy dies");
         bodyAnimator.SetTrigger("Die");
         StartCoroutine(WaitAndReturnToPool(0.30f));
     }
