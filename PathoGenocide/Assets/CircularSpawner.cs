@@ -8,27 +8,44 @@ public class CircularSpawner : MonoBehaviour
     public float spawnRate = 0.2f;
     public float rotationSpeed = 20f; // Degrees per second
     public float spawnRadius = 20f;
-    public float spawnDuration = 10f;
+    public float spawnDuration = 20f; // Duration to spawn for
     private float nextSpawnTime;
-    private float spawnEndTime;
+    private float spawnStartTime; // Time when spawning should start
+    private float spawnEndTime; // Time when spawning should end
+    private bool isSpawningActive = false; // Is the spawner currently active?
 
     private void Start()
     {
-        spawnEndTime = Time.time + spawnDuration;
+        spawnStartTime = Time.time + 40f; // Set to start after 40 seconds
+        spawnEndTime = spawnStartTime + spawnDuration; // Set to end after spawnDuration
     }
 
     private void Update()
     {
-        // Update the spawner's position to move in a circle
-        float angle = Time.time * rotationSpeed;
-        float x = Mathf.Cos(angle * Mathf.Deg2Rad) * spawnRadius;
-        float y = Mathf.Sin(angle * Mathf.Deg2Rad) * spawnRadius;
-        transform.position = new Vector3(x, y, 0f);
-
-        if (Time.time >= nextSpawnTime && Time.time <= spawnEndTime)
+        // Check if within the spawn period
+        if (Time.time >= spawnStartTime && Time.time <= spawnEndTime)
         {
-            SpawnEnemy();
-            nextSpawnTime = Time.time + spawnRate;
+            isSpawningActive = true;
+        }
+        else
+        {
+            isSpawningActive = false;
+        }
+
+        // If the spawner is active, move in a circle and spawn enemies
+        if (isSpawningActive)
+        {
+            // Update the spawner's position to move in a circle
+            float angle = (Time.time - spawnStartTime) * rotationSpeed; // Adjusted to start angle based on spawnStartTime
+            float x = Mathf.Cos(angle * Mathf.Deg2Rad) * spawnRadius;
+            float y = Mathf.Sin(angle * Mathf.Deg2Rad) * spawnRadius;
+            transform.position = new Vector3(x, y, 0f);
+
+            if (Time.time >= nextSpawnTime)
+            {
+                SpawnEnemy();
+                nextSpawnTime = Time.time + spawnRate;
+            }
         }
     }
 

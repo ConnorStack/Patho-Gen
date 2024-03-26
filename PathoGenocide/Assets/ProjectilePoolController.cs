@@ -8,7 +8,7 @@ public class ProjectilePoolController : MonoBehaviour
 
     public GameObject projectilePrefab;
     private Queue<GameObject> projectilePool = new Queue<GameObject>();
-    public int poolSize = 50;
+    public int poolSize = 200;
 
     private void Awake()
     {

@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        Debug.Log("Player has taken damage. Health " + currentHealth);
+        // Debug.Log("Player has taken damage. Health " + currentHealth);
         if (currentHealth <= 0)
         {
             Die();
@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
     private void Die()
     {
         bodyAnimator.SetTrigger("Die");
-        Debug.Log("Player died.");
+        // Debug.Log("Player died.");
         // gameOverController.ShowGameOverMenu();
         StartCoroutine(ShowDeathAnimationAndGameOver());
     }
