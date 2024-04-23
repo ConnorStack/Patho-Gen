@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] float speed = 5f;
     [SerializeField] float maxVerticalSpeed = 10;
     public int currentHealth = 100;
+    public int dnaTokenCount = 0;
     public enum PlayerMovementType { tf, physics };
     [SerializeField] PlayerMovementType movementType = PlayerMovementType.tf;
     [Header("Physics")]
@@ -65,6 +66,22 @@ public class Player : MonoBehaviour
         {
             Die();
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("DNAToken"))
+        {
+            dnaTokenCount++;
+            Debug.Log($"Token received! Total tokens: {dnaTokenCount}");
+            DNATokenPoolController.Instance.ReturnDNAToken(other.gameObject);
+            ReceiveToken();
+        }
+    }
+
+    void ReceiveToken()
+    {
+        Debug.Log("Token received!");
     }
 
     private void Die()

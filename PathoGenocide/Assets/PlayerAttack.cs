@@ -77,7 +77,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time >= nextBasicRangedAttackTime)
         {
-            Debug.Log("Activate Ranged Attack");
+            // Debug.Log("Activate Ranged Attack");
             PerformBasicRangedAttack();
             nextBasicRangedAttackTime = Time.time + basicRangedAttackCooldown;
         }
@@ -85,7 +85,7 @@ public class PlayerAttack : MonoBehaviour
 
     void PerformBasicRangedAttack()
     {
-        Debug.Log("Perform Ranged Attack");
+        // Debug.Log("Perform Ranged Attack");
         GameObject projectile = ProjectilePoolController.Instance.GetProjectile();
         projectile.transform.position = transform.position;
         projectile.GetComponent<Projectile>().direction = CalculateShootingDirection();
@@ -103,7 +103,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && Time.time >= nextSpecialMeleeAttackTime)
         {
-            Debug.Log("Handling spec melee");
+            // Debug.Log("Handling spec melee");
             PerformSpecialMeleeAttack();
             nextSpecialMeleeAttackTime = Time.time + specialMeleeCooldown;
         }
@@ -111,7 +111,7 @@ public class PlayerAttack : MonoBehaviour
 
     void PerformSpecialMeleeAttack()
     {
-        Debug.Log("Perform Special Melee Attack");
+        // Debug.Log("Perform Special Melee Attack");
         specialMeleeAnimator.SetTrigger("SpecialMelee");
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, specialAttackRadius, enemyLayers);
         foreach (Collider2D enemy in hitEnemies)
@@ -128,14 +128,14 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F) && Time.time >= nextSpecialRangedAttackTime)
         {
-            Debug.Log("Handling spec ranged");
+            // Debug.Log("Handling spec ranged");
             PerformSpecialRangedAttack();
         }
     }
 
     void PerformSpecialRangedAttack()
     {
-        Debug.Log("Performing spec ranged");
+        // Debug.Log("Performing spec ranged");
     }
 
     public void OnDrawGizmosSelected()
