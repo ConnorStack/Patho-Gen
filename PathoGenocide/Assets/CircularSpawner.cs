@@ -13,10 +13,11 @@ public class CircularSpawner : MonoBehaviour
     private float spawnStartTime;
     private float spawnEndTime;
     private bool isSpawningActive = false;
+    [SerializeField] private float waitTime = 40f;
 
     private void Start()
     {
-        spawnStartTime = Time.time + 40f;
+        spawnStartTime = Time.time + waitTime;
         spawnEndTime = spawnStartTime + spawnDuration;
     }
 

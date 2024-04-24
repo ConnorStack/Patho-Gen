@@ -64,7 +64,7 @@ public class Enemy : MonoBehaviour
     {
         for (int i = 0; i < tokenDropCount; i++)
         {
-            Debug.Log("dropping token");
+            // Debug.Log("dropping token");
             GameObject token = DNATokenPoolController.Instance.GetDNAToken();
             token.transform.position = transform.position;
             token.transform.rotation = Quaternion.identity;
@@ -72,6 +72,7 @@ public class Enemy : MonoBehaviour
     }
     void Die()
     {
+        UIManager.Instance.UpdateKillCount();
         bodyAnimator.SetTrigger("Die");
         StartCoroutine(WaitAndReturnToPool(0.30f));
     }

@@ -9,8 +9,12 @@ public class Player : MonoBehaviour
     [Header("Stats")]
     [SerializeField] float speed = 5f;
     [SerializeField] float maxVerticalSpeed = 10;
-    public int currentHealth = 100;
+    public int currentHealth = 1000;
+    public int currentExp = 0;
+    public int maxExpForLevel = 10;
     public int dnaTokenCount = 0;
+
+    private bool isProcessing = false;
     public enum PlayerMovementType { tf, physics };
     [SerializeField] PlayerMovementType movementType = PlayerMovementType.tf;
     [Header("Physics")]
@@ -62,6 +66,8 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        UIManager.Instance.UpdateHealth(currentHealth);
+
         if (currentHealth <= 0)
         {
             Die();
@@ -73,7 +79,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("DNAToken"))
         {
             dnaTokenCount++;
-            Debug.Log($"Token received! Total tokens: {dnaTokenCount}");
+            // Debug.Log($"Token received! Total tokens: {dnaTokenCount}");
             DNATokenPoolController.Instance.ReturnDNAToken(other.gameObject);
             ReceiveToken();
         }
@@ -81,7 +87,36 @@ public class Player : MonoBehaviour
 
     void ReceiveToken()
     {
-        Debug.Log("Token received!");
+        //Some way 
+        UIManager.Instance.UpdateTokenCount(dnaTokenCount);
+        // UIManager.Instance.UpdateExperience(dnaTokenCount);
+        UIManager.Instance.UpdateExperienceBar(dnaTokenCount, maxExpForLevel);
+    }
+
+    public void StartProcessingTokens(float rate)
+    {
+        isProcessing = true;
+        StartCoroutine(ConvertTokensToExperience(rate));
+    }
+
+    public void StopProcessingTokens()
+    {
+        isProcessing = false;
+    }
+
+    private IEnumerator ConvertTokensToExperience(float rate)
+    {
+        while (isProcessing && dnaTokenCount > 0)
+        {
+            yield return new WaitForSeconds(1f / rate);
+            dnaTokenCount--;
+            currentExp++;  // Adjust based on desired experience increment
+            UIManager.Instance.UpdateTokenCount(dnaTokenCount);
+            UIManager.Instance.UpdateExperience(currentExp);
+
+            Debug.Log("Processed 1 token, Experience: " + currentExp);
+            Debug.Log("Token Count " + dnaTokenCount);
+        }
     }
 
     private void Die()

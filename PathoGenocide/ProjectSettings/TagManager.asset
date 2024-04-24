@@ -19,9 +19,9 @@ TagManager:
   - Player
   - Environment
   - Enemy
-  - 
-  - 
-  - 
+  - Projectiles
+  - DNATokens
+  - DNAProcessingZone
   - 
   - 
   - 
