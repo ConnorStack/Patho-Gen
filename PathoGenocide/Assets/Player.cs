@@ -13,7 +13,6 @@ public class Player : MonoBehaviour
     public int currentExp = 0;
     public int maxExpForLevel = 10;
     public int dnaTokenCount = 0;
-
     private bool isProcessing = false;
     public enum PlayerMovementType { tf, physics };
     [SerializeField] PlayerMovementType movementType = PlayerMovementType.tf;
@@ -25,6 +24,8 @@ public class Player : MonoBehaviour
     Rigidbody2D rigidBody;
     private Animator bodyAnimator;
     public GameOverMenuController gameOverController;
+    private int activeZones = 0;  // Count of active processing zones
+    // private float currentRate = 0f; 
 
 
     void Start()
@@ -90,13 +91,35 @@ public class Player : MonoBehaviour
         //Some way 
         UIManager.Instance.UpdateTokenCount(dnaTokenCount);
         // UIManager.Instance.UpdateExperience(dnaTokenCount);
-        UIManager.Instance.UpdateExperienceBar(dnaTokenCount, maxExpForLevel);
+        // UIManager.Instance.UpdateExperienceBar(dnaTokenCount, maxExpForLevel);
     }
 
-    public void StartProcessingTokens(float rate)
+    public void EnterProcessingZone(float processingRate)
     {
-        isProcessing = true;
-        StartCoroutine(ConvertTokensToExperience(rate));
+        activeZones++;
+        if (activeZones == 1)  // Start processing only if this is the first zone entered
+        {
+            StartProcessingTokens(processingRate);
+        }
+    }
+
+    public void ExitProcessingZone()
+    {
+        activeZones--;
+        if (activeZones == 0)  // Stop processing only if all zones are exited
+        {
+            StopProcessingTokens();
+        }
+    }
+
+    private void StartProcessingTokens(float processingRate)
+    {
+        // currentRate = processingRate;  // Update the rate if needed
+        if (!isProcessing)
+        {
+            isProcessing = true;
+            StartCoroutine(ConvertTokensToExperience(processingRate));
+        }
     }
 
     public void StopProcessingTokens()
@@ -104,11 +127,11 @@ public class Player : MonoBehaviour
         isProcessing = false;
     }
 
-    private IEnumerator ConvertTokensToExperience(float rate)
+    private IEnumerator ConvertTokensToExperience(float processingRate)
     {
         while (isProcessing && dnaTokenCount > 0)
         {
-            yield return new WaitForSeconds(1f / rate);
+            yield return new WaitForSeconds(1f / processingRate);
             dnaTokenCount--;
             currentExp++;  // Adjust based on desired experience increment
             UIManager.Instance.UpdateTokenCount(dnaTokenCount);

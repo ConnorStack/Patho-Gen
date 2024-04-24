@@ -13,7 +13,8 @@ public class DNAProcessingZone : MonoBehaviour
             Player player = other.GetComponent<Player>();
             if (player != null)
             {
-                player.StartProcessingTokens(processingRate);
+                // player.StartProcessingTokens(processingRate);
+                player.EnterProcessingZone(processingRate);
             }
         }
     }
@@ -25,7 +26,8 @@ public class DNAProcessingZone : MonoBehaviour
             Player player = other.GetComponent<Player>();
             if (player != null)
             {
-                player.StopProcessingTokens();
+                // player.StopProcessingTokens();
+                player.ExitProcessingZone();
             }
         }
     }

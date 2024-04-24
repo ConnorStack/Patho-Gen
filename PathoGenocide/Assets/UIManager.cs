@@ -47,7 +47,7 @@ public class UIManager : MonoBehaviour
         if (expCountText != null)
         {
             expCountText.text = "EXP: " + experience;
-
+            experienceSlider.value = experience;
         }
     }
 
@@ -61,9 +61,9 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void UpdateExperienceBar(float currentExp, float maxExp)
-    {
-        experienceSlider.maxValue = maxExp;
-        experienceSlider.value = currentExp;
-    }
+    // public void UpdateExperienceBar(float currentExp, float maxExp)
+    // {
+    //     experienceSlider.maxValue = maxExp;
+    //     experienceSlider.value = currentExp;
+    // }
 }
