@@ -6,32 +6,61 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+
+    // private Animator bodyAnimator;
+    // public GameOverMenuController gameOverController;
+    // private int activeZones = 0;  // Count of active processing zones
+    // // private float currentRate = 0f; 
+
+    //
+    // Player Basic Info
+    [Header("Basic Info")]
+    [SerializeField] private string playerName = "Leuk";
+
+    // Movement Configuration
+    [Header("Movement")]
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private float maxVerticalSpeed = 10;
+    public enum PlayerMovementType { tf, physics };
+    [SerializeField] private PlayerMovementType movementType = PlayerMovementType.tf;
+    private Rigidbody2D rigidBody;
+
+    // Health and Experience
     [Header("Stats")]
-    [SerializeField] float speed = 5f;
-    [SerializeField] float maxVerticalSpeed = 10;
     public int currentHealth = 1000;
-    public int currentExp = 0;
+    public int currentLevel = 1;
     public int maxExpForLevel = 10;
+    public int currentExp = 0;
+
+    // DNA Tokens
+    [Header("DNA Tokens")]
     public int dnaTokenCount = 0;
     private bool isProcessing = false;
-    public enum PlayerMovementType { tf, physics };
-    [SerializeField] PlayerMovementType movementType = PlayerMovementType.tf;
-    [Header("Physics")]
-    [Header("Flavor")]
-    [SerializeField] string playerName = "Leuk";
+    private int activeZones = 0;
+    private int experienceIncreasePerToken = 1;
+
+    // Animation
+    [Header("Animation")]
     [SerializeField] private GameObject body;
-    [SerializeField] List<AnimationStateChanger> animationStateChangers;
-    Rigidbody2D rigidBody;
+    [SerializeField] private List<AnimationStateChanger> animationStateChangers;
     private Animator bodyAnimator;
+
+    // UI and Game Over
+    [Header("UI & Game Over")]
     public GameOverMenuController gameOverController;
-    private int activeZones = 0;  // Count of active processing zones
-    // private float currentRate = 0f; 
+
 
 
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         bodyAnimator = GetComponentInChildren<Animator>();
+        UpdateLevelUI();
+    }
+    private void UpdateLevelUI()
+    {
+        UIManager.Instance.UpdateExperienceBar(currentHealth, maxExpForLevel);
+        UIManager.Instance.UpdateLevel(currentLevel);
     }
 
     public void MovePlayer(Vector3 direction)
@@ -80,7 +109,6 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("DNAToken"))
         {
             dnaTokenCount++;
-            // Debug.Log($"Token received! Total tokens: {dnaTokenCount}");
             DNATokenPoolController.Instance.ReturnDNAToken(other.gameObject);
             ReceiveToken();
         }
@@ -88,30 +116,17 @@ public class Player : MonoBehaviour
 
     void ReceiveToken()
     {
-        //Some way 
         UIManager.Instance.UpdateTokenCount(dnaTokenCount);
-        // UIManager.Instance.UpdateExperience(dnaTokenCount);
-        // UIManager.Instance.UpdateExperienceBar(dnaTokenCount, maxExpForLevel);
     }
 
     public void EnterProcessingZone(float processingRate)
     {
         activeZones++;
-        if (activeZones == 1)  // Start processing only if this is the first zone entered
+        if (activeZones == 1)
         {
             StartProcessingTokens(processingRate);
         }
     }
-
-    public void ExitProcessingZone()
-    {
-        activeZones--;
-        if (activeZones == 0)  // Stop processing only if all zones are exited
-        {
-            StopProcessingTokens();
-        }
-    }
-
     private void StartProcessingTokens(float processingRate)
     {
         // currentRate = processingRate;  // Update the rate if needed
@@ -121,6 +136,16 @@ public class Player : MonoBehaviour
             StartCoroutine(ConvertTokensToExperience(processingRate));
         }
     }
+
+    public void ExitProcessingZone()
+    {
+        activeZones--;
+        if (activeZones == 0)
+        {
+            StopProcessingTokens();
+        }
+    }
+
 
     public void StopProcessingTokens()
     {
@@ -133,13 +158,38 @@ public class Player : MonoBehaviour
         {
             yield return new WaitForSeconds(1f / processingRate);
             dnaTokenCount--;
-            currentExp++;  // Adjust based on desired experience increment
+            GainExperience(experienceIncreasePerToken);
+            // currentExp++;  // Adjust based on desired experience increment
             UIManager.Instance.UpdateTokenCount(dnaTokenCount);
             UIManager.Instance.UpdateExperience(currentExp);
 
             Debug.Log("Processed 1 token, Experience: " + currentExp);
             Debug.Log("Token Count " + dnaTokenCount);
         }
+    }
+
+    private void GainExperience(int amount)
+    {
+        currentExp += amount;
+        if (currentExp >= maxExpForLevel)
+        {
+            LevelUp();
+        }
+        UpdateLevelUI();
+    }
+
+    private void LevelUp()
+    {
+        currentExp -= maxExpForLevel;  // Carry over excess experience to the next level
+        currentLevel++;
+        maxExpForLevel = CalculateNextLevelExp(currentLevel);  // Calculate new threshold for next level
+        Debug.Log("Leveled up! New level: " + currentLevel);
+    }
+
+    private int CalculateNextLevelExp(int level)
+    {
+        // Example: Increase needed experience by 20% each level
+        return (int)(maxExpForLevel * 1.2f);
     }
 
     private void Die()

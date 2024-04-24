@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI killCountText;
     public TextMeshProUGUI expCountText;
     public TextMeshProUGUI tokenCountText;
+    public TextMeshProUGUI levelText;
     public Slider experienceSlider;
     public Slider healthSlider;
     private int killCount = 0;
@@ -50,6 +51,10 @@ public class UIManager : MonoBehaviour
             experienceSlider.value = experience;
         }
     }
+    public void UpdateLevel(int level)
+    {
+        levelText.text = "" + level;
+    }
 
     public void UpdateTokenCount(int DNATokenCount)
     {
@@ -61,9 +66,9 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    // public void UpdateExperienceBar(float currentExp, float maxExp)
-    // {
-    //     experienceSlider.maxValue = maxExp;
-    //     experienceSlider.value = currentExp;
-    // }
+    public void UpdateExperienceBar(float currentExp, float maxExp)
+    {
+        experienceSlider.maxValue = maxExp;
+        experienceSlider.value = currentExp;
+    }
 }
