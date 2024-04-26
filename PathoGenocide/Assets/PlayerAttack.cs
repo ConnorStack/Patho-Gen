@@ -21,28 +21,45 @@ public class PlayerAttack : MonoBehaviour
 
     public float nextAttackTime = 0f;
     [SerializeField] public float basicMeleeAttackCooldown = 1.0f;
-    [SerializeField] public float basicRangedAttackCooldown = 0f;
+    [SerializeField] public float basicRangedAttackCooldown = 1.0f;
     [SerializeField] public float specialMeleeCooldown = 0f;
     [SerializeField] public float specialRangedCooldown = 0f;
-    private float nextBasicMeleeAttackTime = 0f;
+    private float nextBasicMeleeAttackTime = 1.0f;
     private float nextBasicRangedAttackTime = 0f;
     private float nextSpecialMeleeAttackTime = 0f;
     private float nextSpecialRangedAttackTime = 0f;
 
     public float attackCooldown = 2.5f;
 
+    private float currentMeleeCooldown;
+    private float currentRangedCooldown;
+    private Player player;
+
     void Start()
     {
         bodyAnimator = GetComponentInChildren<Animator>();
+        player = GetComponent<Player>();
+        UpdateCooldowns();
+        if (player == null)
+        {
+            Debug.LogError("Player component not found on the GameObject!");
+        }
     }
 
 
     void Update()
     {
+        UpdateCooldowns();
         HandleBasicMeleeAttack();
         HandleBasicRangedAttack();
         HandleSpecialMeleeAttack();
         HandleSpecialRangedAttack();
+    }
+
+    void UpdateCooldowns()
+    {
+        currentMeleeCooldown = basicMeleeAttackCooldown / (1 + 0.1f * (player.currentLevel - 1));  // Reduces by 10% each level
+        currentRangedCooldown = basicRangedAttackCooldown / (1 + 0.1f * (player.currentLevel - 1));  // Reduces by 10% each level
     }
 
     void HandleBasicMeleeAttack()
@@ -75,11 +92,16 @@ public class PlayerAttack : MonoBehaviour
 
     void HandleBasicRangedAttack()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time >= nextBasicRangedAttackTime)
+        // if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time >= nextBasicRangedAttackTime)
+        // {
+        //     // Debug.Log("Activate Ranged Attack");
+        //     PerformBasicRangedAttack();
+        //     nextBasicRangedAttackTime = Time.time + basicRangedAttackCooldown;
+        // }
+        if (Time.time >= nextBasicRangedAttackTime)
         {
-            // Debug.Log("Activate Ranged Attack");
             PerformBasicRangedAttack();
-            nextBasicRangedAttackTime = Time.time + basicRangedAttackCooldown;
+            nextBasicRangedAttackTime = Time.time + currentRangedCooldown; // Use the current cooldown based on level
         }
     }
 
