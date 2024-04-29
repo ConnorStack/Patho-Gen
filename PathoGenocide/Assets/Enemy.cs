@@ -38,6 +38,7 @@ public class Enemy : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("PlayerAttack"))
         {
+            Debug.Log("Collision with PlayerAttack");
             TakeDamage(10);
         }
         else if (collider.gameObject.CompareTag("Player"))

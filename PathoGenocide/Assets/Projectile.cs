@@ -9,15 +9,22 @@ public class Projectile : MonoBehaviour
     public bool isSpecial = false;
     public float specialDamage = 50f;
 
-    void Update()
+    // void Update()
+    // {
+    //     transform.Translate(direction.normalized * speed * Time.deltaTime);
+    // }
+
+    void FixedUpdate()
     {
-        transform.Translate(direction.normalized * speed * Time.deltaTime);
+        Vector2 movePosition = (Vector2)transform.position + (direction.normalized * speed * Time.fixedDeltaTime);
+        GetComponent<Rigidbody2D>().MovePosition(movePosition);
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
         if (hitInfo.gameObject.CompareTag("Enemy"))
         {
+            Debug.Log("Projectile Collision with Enemy");
             Enemy enemy = hitInfo.GetComponent<Enemy>();
             if (enemy != null)
             {

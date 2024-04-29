@@ -12,7 +12,7 @@ public class DNAZoneController : MonoBehaviour
     private void Start()
     {
         // spawnInterval = 1f;
-        InvokeRepeating("SpawnZone", 0f, spawnInterval);  // Adjust the spawn interval as needed
+        InvokeRepeating("SpawnZone", 0f, spawnInterval);  // Adjust the spawn interval
     }
     void SpawnZone()
     {

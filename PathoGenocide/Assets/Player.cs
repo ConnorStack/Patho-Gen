@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     [Header("Stats")]
     public int currentHealth = 1000;
     public int currentLevel = 1;
-    public int maxExpForLevel = 10;
+    public int maxExpForLevel = 5;
     public int currentExp = 0;
 
     // DNA Tokens
@@ -163,8 +163,8 @@ public class Player : MonoBehaviour
             UIManager.Instance.UpdateTokenCount(dnaTokenCount);
             UIManager.Instance.UpdateExperience(currentExp);
 
-            Debug.Log("Processed 1 token, Experience: " + currentExp);
-            Debug.Log("Token Count " + dnaTokenCount);
+            // Debug.Log("Processed 1 token, Experience: " + currentExp);
+            // Debug.Log("Token Count " + dnaTokenCount);
         }
     }
 
@@ -183,13 +183,13 @@ public class Player : MonoBehaviour
         currentExp -= maxExpForLevel;  // Carry over excess experience to the next level
         currentLevel++;
         maxExpForLevel = CalculateNextLevelExp(currentLevel);  // Calculate new threshold for next level
-        Debug.Log("Leveled up! New level: " + currentLevel);
+        // Debug.Log("Leveled up! New level: " + currentLevel);
     }
 
     private int CalculateNextLevelExp(int level)
     {
         // Example: Increase needed experience by 20% each level
-        return (int)(maxExpForLevel * 1.2f);
+        return (int)(level * 1.2f);
     }
 
     private void Die()

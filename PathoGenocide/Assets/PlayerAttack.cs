@@ -59,7 +59,7 @@ public class PlayerAttack : MonoBehaviour
     void UpdateCooldowns()
     {
         currentMeleeCooldown = basicMeleeAttackCooldown / (1 + 0.1f * (player.currentLevel - 1));  // Reduces by 10% each level
-        currentRangedCooldown = basicRangedAttackCooldown / (1 + 0.1f * (player.currentLevel - 1));  // Reduces by 10% each level
+        currentRangedCooldown = basicRangedAttackCooldown / (1 + 1.0f * (player.currentLevel - 1));  // Reduces by 10% each level
     }
 
     void HandleBasicMeleeAttack()
@@ -92,12 +92,7 @@ public class PlayerAttack : MonoBehaviour
 
     void HandleBasicRangedAttack()
     {
-        // if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time >= nextBasicRangedAttackTime)
-        // {
-        //     // Debug.Log("Activate Ranged Attack");
-        //     PerformBasicRangedAttack();
-        //     nextBasicRangedAttackTime = Time.time + basicRangedAttackCooldown;
-        // }
+
         if (Time.time >= nextBasicRangedAttackTime)
         {
             PerformBasicRangedAttack();
