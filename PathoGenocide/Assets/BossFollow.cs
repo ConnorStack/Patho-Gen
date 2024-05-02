@@ -17,27 +17,16 @@ public class BossFollow : MonoBehaviour
 
     private IEnumerator FollowPlayer()
     {
-        while (true)
+        while (true) // Loop indefinitely
         {
-            if (isMoving)
+            if (player != null)
             {
-
-                if (player != null)
-                {
-                    Vector3 newPosition = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
-                    transform.position = newPosition;
-                }
-
-
-                yield return new WaitForSeconds(moveDuration);
-                isMoving = false;
+                // Move towards the player continuously
+                Debug.Log("Following");
+                Vector3 newPosition = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+                transform.position = newPosition;
             }
-            else
-            {
-
-                yield return new WaitForSeconds(pauseDuration);
-                isMoving = true;
-            }
+            yield return null; // Wait until the next frame
         }
     }
 }

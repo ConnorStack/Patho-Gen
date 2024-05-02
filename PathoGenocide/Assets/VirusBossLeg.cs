@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BossLeg : MonoBehaviour
+public class VirusBossLeg : MonoBehaviour
 {
     public int legHealth = 50;
     private DamageEffect damageEffect;

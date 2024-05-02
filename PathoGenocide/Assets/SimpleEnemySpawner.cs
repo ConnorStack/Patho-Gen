@@ -3,15 +3,16 @@ using UnityEngine;
 public class SimpleEnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
-    public float spawnInterval = 2f;
+    public float spawnInterval = 10f;
+    public float spawnDelay = 0f;
     private float nextSpawnTime;
     private float startTime;
-    private float activeDuration = 20f;
+    public float activeDuration = 20f;
     private bool isActive = false;
 
     private void Start()
     {
-        startTime = Time.time + 30f;
+        startTime = Time.time + spawnDelay;
     }
 
     private void Update()
@@ -22,20 +23,28 @@ public class SimpleEnemySpawner : MonoBehaviour
             nextSpawnTime = Time.time + spawnInterval;
         }
 
-        if (isActive && Time.time >= startTime + activeDuration)
-        {
-            isActive = false;
-        }
-
         if (isActive && Time.time >= nextSpawnTime)
         {
             SpawnEnemy();
             nextSpawnTime = Time.time + spawnInterval;
+        }
+
+        if (isActive && Time.time >= startTime + activeDuration)
+        {
+            isActive = false;
+            startTime = Time.time + spawnDelay;  // Reset startTime to reactivate after delay
         }
     }
 
     void SpawnEnemy()
     {
         Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+    }
+
+    public void ActivateSpawning()
+    {
+        isActive = true;
+        startTime = Time.time + spawnDelay;
+        nextSpawnTime = Time.time + spawnInterval;
     }
 }
