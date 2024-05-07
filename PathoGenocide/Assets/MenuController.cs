@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
+    public GameObject instructionsPanel;
+
+    void Start()
+    {
+        instructionsPanel.SetActive(false);  // Hide the panel initially
+    }
     public void PlayGame()
     {
         Debug.Log("Open Game");
@@ -14,6 +20,13 @@ public class MenuController : MonoBehaviour
     public void OpenInstructions()
     {
         Debug.Log("Open instructions");
+        instructionsPanel.SetActive(true);  // Show the instructions panel
+    }
+
+    public void CloseInstructions()
+    {
+        Debug.Log("Close instructions");
+        instructionsPanel.SetActive(false);  // Hide the instructions panel
     }
 
     public void QuitGame()

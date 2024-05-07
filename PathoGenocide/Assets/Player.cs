@@ -44,6 +44,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject body;
     [SerializeField] private List<AnimationStateChanger> animationStateChangers;
     private Animator bodyAnimator;
+    private Animator LevelUpAnimator;
 
     // UI and Game Over
     [Header("UI & Game Over")]
@@ -55,6 +56,7 @@ public class Player : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         bodyAnimator = GetComponentInChildren<Animator>();
+
         UpdateLevelUI();
     }
     private void UpdateLevelUI()
@@ -113,6 +115,23 @@ public class Player : MonoBehaviour
             ReceiveToken();
         }
     }
+
+    //     private void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     if (other.gameObject.CompareTag("DNAToken"))
+    //     {
+    //         dnaTokenCount++;
+    //         DNAToken tokenScript = other.gameObject.GetComponent<dnaToken>();
+    //         if (tokenScript != null)
+    //         {
+    //             tokenScript.Collect();  // This will handle sound and deactivation
+    //         }
+    //         else
+    //         {
+    //             Debug.LogError("DNAToken script not found on the collided object.");
+    //         }
+    //     }
+    // }
 
     void ReceiveToken()
     {
@@ -180,10 +199,11 @@ public class Player : MonoBehaviour
 
     private void LevelUp()
     {
+        // LevelUpAnimator.SetTrigger("LevelUp");
         currentExp -= maxExpForLevel;  // Carry over excess experience to the next level
         currentLevel++;
         maxExpForLevel = CalculateNextLevelExp(currentLevel);  // Calculate new threshold for next level
-        // Debug.Log("Leveled up! New level: " + currentLevel);
+        Debug.Log("Leveled up! New level: " + currentLevel);
     }
 
     private int CalculateNextLevelExp(int level)

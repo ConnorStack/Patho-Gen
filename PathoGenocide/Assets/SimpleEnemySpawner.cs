@@ -4,35 +4,43 @@ public class SimpleEnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public float spawnInterval = 10f;
-    public float spawnDelay = 0f;
-    private float nextSpawnTime;
-    private float startTime;
-    public float activeDuration = 20f;
-    private bool isActive = false;
+    [SerializeField] private float startDelay = 0f;  // Start delay before first spawn
+    [SerializeField] private float spawnDuration = 20f;  // Duration the spawner is active
 
-    private void Start()
+    private float nextSpawnTime = 0f;
+    private float spawnStartTime;
+    private float spawnEndTime;
+    private bool isSpawning = false;
+
+    void Start()
     {
-        startTime = Time.time + spawnDelay;
+        // Set the initial times based on the start delay and spawn duration
+        spawnStartTime = Time.time + startDelay;
+        spawnEndTime = spawnStartTime + spawnDuration;
     }
 
-    private void Update()
+    void Update()
     {
-        if (!isActive && Time.time >= startTime)
+        // Check if it's time to start spawning
+        if (!isSpawning && Time.time >= spawnStartTime)
         {
-            isActive = true;
-            nextSpawnTime = Time.time;  // Start spawning immediately
+            isSpawning = true;
+            nextSpawnTime = Time.time;  // Initialize the next spawn time
         }
 
-        if (isActive && Time.time >= nextSpawnTime)
+        // Handle active spawning within the duration
+        if (isSpawning && Time.time <= spawnEndTime)
         {
-            SpawnEnemy();
-            nextSpawnTime = Time.time + spawnInterval;  // Set the time for the next spawn
+            if (Time.time >= nextSpawnTime)
+            {
+                SpawnEnemy();
+                nextSpawnTime = Time.time + spawnInterval;  // Set time for next spawn
+            }
         }
-
-        if (isActive && Time.time >= startTime + activeDuration)
+        else if (isSpawning && Time.time > spawnEndTime)
         {
-            isActive = false;
-            startTime = Time.time + spawnDelay + activeDuration;  // Reset startTime to reactivate after delay and duration
+            // Optionally, disable spawner or reset for another cycle
+            isSpawning = false;  // Stop spawning after duration ends
         }
     }
 

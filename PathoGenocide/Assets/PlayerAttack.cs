@@ -12,7 +12,7 @@ public class PlayerAttack : MonoBehaviour
     public Transform projectileOrigin;
     [SerializeField] private float attackRange = 0.5f;
     [SerializeField] private float attackHeight = 0.5f;
-    [SerializeField] float specialAttackRadius = 3.0f;
+    [SerializeField] float specialAttackRadius = 4.0f;
 
     public Vector2 attackVector;
     public LayerMask enemyLayers;
@@ -34,6 +34,8 @@ public class PlayerAttack : MonoBehaviour
     private float currentMeleeCooldown;
     private float currentRangedCooldown;
     private Player player;
+    public int minLevelForBasicMelee = 5;  // Minimum level required to perform basic melee attacks
+    public int minLevelForSpecialMelee = 10;  // Minimum level required to perform special melee attacks
 
     void Start()
     {
@@ -59,15 +61,22 @@ public class PlayerAttack : MonoBehaviour
     void UpdateCooldowns()
     {
         currentMeleeCooldown = basicMeleeAttackCooldown / (1 + 0.1f * (player.currentLevel - 1));  // Reduces by 10% each level
-        currentRangedCooldown = basicRangedAttackCooldown / (1 + 0.1f * (player.currentLevel - 1));  // Reduces by 10% each level
+        currentRangedCooldown = basicRangedAttackCooldown / (1 + 0.2f * (player.currentLevel - 1));  // Reduces by 10% each level
     }
 
     void HandleBasicMeleeAttack()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1) && Time.time >= nextBasicMeleeAttackTime)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && Time.time >= nextBasicMeleeAttackTime)
         {
-            PerformBasicMeleeAttack();
-            nextBasicMeleeAttackTime = Time.time + basicMeleeAttackCooldown;
+            if (player.currentLevel >= minLevelForBasicMelee)
+            {
+                PerformBasicMeleeAttack();
+                nextBasicMeleeAttackTime = Time.time + currentMeleeCooldown;
+            }
+            else
+            {
+                Debug.Log("Level too low for basic melee attack. Required level: " + minLevelForBasicMelee);
+            }
         }
     }
 
@@ -120,9 +129,15 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && Time.time >= nextSpecialMeleeAttackTime)
         {
-            // Debug.Log("Handling spec melee");
-            PerformSpecialMeleeAttack();
-            nextSpecialMeleeAttackTime = Time.time + specialMeleeCooldown;
+            if (player.currentLevel >= minLevelForSpecialMelee)
+            {
+                PerformSpecialMeleeAttack();
+                nextSpecialMeleeAttackTime = Time.time + specialMeleeCooldown;
+            }
+            else
+            {
+                Debug.Log("Level too low for special melee attack. Required level: " + minLevelForSpecialMelee);
+            }
         }
     }
 

@@ -4,11 +4,31 @@ public class VirusBoss : MonoBehaviour
 {
     public VirusBossLeg[] legs;
     public int totalHealth = 200;
-    public bool isVulnerable => CheckIfAllLegsDestroyed();
-    public GameObject enemySpawnerPrefab; // Assign this in the Inspector
-    public Transform spawnPoint;          // Optional: A specific point for spawning spawners
-    public float spawnSpawnerInterval = 10f; // Interval between spawning spawners
-    private float nextSpawnTime = 0f;
+    public float attackRadius = 5f; // The radius within which the attack affects the player
+    public int attackDamage = 20; // The amount of damage dealt by each attack
+    public float attackInterval = 3f; // Attack every 3 seconds
+    private float nextAttackTime = 0f;
+    public GameObject attackObject;
+    private Animator attackAnimator;
+    private DamageEffect damageEffect;
+
+    void Start()
+    {
+        nextAttackTime = Time.time + attackInterval;
+        if (attackObject != null)
+        {
+            attackAnimator = attackObject.GetComponent<Animator>();
+            if (attackAnimator == null)
+            {
+                Debug.LogError("Animator component missing on attack object!");
+            }
+        }
+        else
+        {
+            Debug.LogError("Attack object not assigned!");
+        }
+    }
+
     void Update()
     {
         // This will continuously check if the boss is vulnerable
@@ -18,12 +38,40 @@ public class VirusBoss : MonoBehaviour
             Debug.Log("Boss is now vulnerable!");
             // Optionally, you can implement further behavior changes or effects here
         }
+        if (Time.time >= nextAttackTime)
+        {
+            PerformAttack();
+            nextAttackTime = Time.time + attackInterval;
+        }
+    }
+    void PerformAttack()
+    {
+        // Debug log to show when the attack happens
+        Debug.Log("Performing attack!");
+
+        if (attackAnimator != null)
+        {
+            attackAnimator.SetTrigger("Attacking");
+        }
+        // Check for player within the attack radius
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, attackRadius);
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.CompareTag("Player")) // Ensure the player has the tag "Player"
+            {
+                // Assuming the player has a script with a method to take damage
+                hitCollider.GetComponent<Player>().TakeDamage(attackDamage);
+            }
+        }
     }
 
-    void Start()
+    public bool isVulnerable => CheckIfAllLegsDestroyed();
+
+    void OnDrawGizmos()
     {
-        nextSpawnTime = Time.time + 5.0f;
-        // InvokeRepeating("SpawnSpawner", 3.0f, 8.0f);
+        // Draw the attack radius in the scene view to visualize it
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRadius);
     }
 
     bool CheckIfAllLegsDestroyed()
@@ -34,6 +82,17 @@ public class VirusBoss : MonoBehaviour
                 return false;
         }
         return true;
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        // Check if the collider has the correct tag
+        if (collider.CompareTag("PlayerAttack"))
+        {
+            int damage = 10;  // Example damage value, could be passed by the projectile
+
+            TakeDamage(damage);
+        }
     }
 
     public void TakeDamage(int damage)
@@ -55,19 +114,5 @@ public class VirusBoss : MonoBehaviour
         Destroy(gameObject); // Destroys the boss object
     }
 
-    // void SpawnSpawner()
-    // {
-    //     if (enemySpawnerPrefab != null)
-    //     {
-    //         GameObject spawner = Instantiate(enemySpawnerPrefab, spawnPoint.position, Quaternion.identity);
-    //         // spawner.SetActive(true); // Ensure the spawner is active when instantiated
-    //         Debug.Log("Spawner Spawned");
 
-    //         SimpleEnemySpawner spawnerScript = spawner.GetComponent<SimpleEnemySpawner>();
-    //         if (spawnerScript != null)
-    //         {
-    //             // spawnerScript.ActivateSpawning(); // Activate spawning if needed
-    //         }
-    //     }
-    // }
 }
