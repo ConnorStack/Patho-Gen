@@ -20,31 +20,24 @@ public class SimpleEnemySpawner : MonoBehaviour
         if (!isActive && Time.time >= startTime)
         {
             isActive = true;
-            nextSpawnTime = Time.time + spawnInterval;
+            nextSpawnTime = Time.time;  // Start spawning immediately
         }
 
         if (isActive && Time.time >= nextSpawnTime)
         {
             SpawnEnemy();
-            nextSpawnTime = Time.time + spawnInterval;
+            nextSpawnTime = Time.time + spawnInterval;  // Set the time for the next spawn
         }
 
         if (isActive && Time.time >= startTime + activeDuration)
         {
             isActive = false;
-            startTime = Time.time + spawnDelay;  // Reset startTime to reactivate after delay
+            startTime = Time.time + spawnDelay + activeDuration;  // Reset startTime to reactivate after delay and duration
         }
     }
 
     void SpawnEnemy()
     {
         Instantiate(enemyPrefab, transform.position, Quaternion.identity);
-    }
-
-    public void ActivateSpawning()
-    {
-        isActive = true;
-        startTime = Time.time + spawnDelay;
-        nextSpawnTime = Time.time + spawnInterval;
     }
 }

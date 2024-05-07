@@ -59,7 +59,7 @@ public class PlayerAttack : MonoBehaviour
     void UpdateCooldowns()
     {
         currentMeleeCooldown = basicMeleeAttackCooldown / (1 + 0.1f * (player.currentLevel - 1));  // Reduces by 10% each level
-        currentRangedCooldown = basicRangedAttackCooldown / (1 + 1.0f * (player.currentLevel - 1));  // Reduces by 10% each level
+        currentRangedCooldown = basicRangedAttackCooldown / (1 + 0.1f * (player.currentLevel - 1));  // Reduces by 10% each level
     }
 
     void HandleBasicMeleeAttack()

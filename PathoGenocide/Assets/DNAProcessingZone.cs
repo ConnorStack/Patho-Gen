@@ -9,7 +9,7 @@ public class DNAProcessingZone : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Enter the zone");
+            // Debug.Log("Enter the zone");
             Player player = other.GetComponent<Player>();
             if (player != null)
             {
@@ -22,7 +22,7 @@ public class DNAProcessingZone : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Exit the zone");
+            // Debug.Log("Exit the zone");
             Player player = other.GetComponent<Player>();
             if (player != null)
             {

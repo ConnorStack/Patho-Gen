@@ -34,12 +34,14 @@ public class RandomSpawner : MonoBehaviour
         {
             if (Time.time >= nextSpawnTime)
             {
+                Debug.Log("Spawning enemy at random position");
                 SpawnEnemyAtRandomLocation();
                 nextSpawnTime = Time.time + spawnInterval;
             }
         }
         else if (isSpawning && Time.time > spawnEndTime)
         {
+            Debug.Log("Spawner disabled");
             this.enabled = false;
         }
     }

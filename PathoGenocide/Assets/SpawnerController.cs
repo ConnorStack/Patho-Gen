@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    public EnemySpawner randomSpawner;
+    public RandomSpawner randomSpawner;
     public CircularSpawner circularSpawner;
     public SimpleEnemySpawner simpleSpawner;
-    public float phaseDuration = 60f;  // Each phase lasts 1 minute
+    public float phaseDuration = 5f;  // Each phase lasts 1 minute
     private float gameStartTime;
 
     private void Start()
@@ -25,6 +25,7 @@ public class GameController : MonoBehaviour
         if (elapsedTime <= phaseDuration)
         {
             randomSpawner.enabled = true;
+            Debug.Log("Random spawner activate");
             // randomSpawner.UpdateSpawnParameters(0.2f, 5f); // Example parameters: spawn rate and speed
         }
         // Phase 2: Geometric patterns
@@ -34,6 +35,7 @@ public class GameController : MonoBehaviour
             circularSpawner.enabled = true;
             // circularSpawner.UpdateSpawnParameters(0.15f, 10f); // Adjusted for more frequent spawning
             simpleSpawner.enabled = true;
+            Debug.Log("circularSpawner, simpleSpawner activate");
         }
         // Phase 3: Mixed patterns
         else if (elapsedTime <= phaseDuration * 3)

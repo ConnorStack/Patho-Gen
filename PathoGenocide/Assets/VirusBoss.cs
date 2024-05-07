@@ -11,19 +11,12 @@ public class VirusBoss : MonoBehaviour
     private float nextSpawnTime = 0f;
     void Update()
     {
+        // This will continuously check if the boss is vulnerable
         if (isVulnerable)
         {
-            // Change behavior, make boss vulnerable or change attack patterns
-            // if (Time.time >= nextSpawnTime)
-            // {
-            //     SpawnSpawner();
-            //     nextSpawnTime = Time.time + spawnSpawnerInterval;
-            // }
-        }
-        if (Time.time >= nextSpawnTime)
-        {
-            SpawnSpawner();
-            nextSpawnTime = Time.time + spawnSpawnerInterval;
+            // Here, you could indicate the boss is vulnerable, e.g., change appearance
+            Debug.Log("Boss is now vulnerable!");
+            // Optionally, you can implement further behavior changes or effects here
         }
     }
 
@@ -43,19 +36,38 @@ public class VirusBoss : MonoBehaviour
         return true;
     }
 
-    void SpawnSpawner()
+    public void TakeDamage(int damage)
     {
-        if (enemySpawnerPrefab != null)
+        if (isVulnerable)
         {
-            GameObject spawner = Instantiate(enemySpawnerPrefab, spawnPoint.position, Quaternion.identity);
-            // spawner.SetActive(true); // Ensure the spawner is active when instantiated
-            Debug.Log("Spawner Spawned");
-
-            SimpleEnemySpawner spawnerScript = spawner.GetComponent<SimpleEnemySpawner>();
-            if (spawnerScript != null)
+            totalHealth -= damage;
+            if (totalHealth <= 0)
             {
-                spawnerScript.ActivateSpawning(); // Activate spawning if needed
+                Die();
             }
         }
     }
+
+    void Die()
+    {
+        Debug.Log("Boss defeated!");
+        // You can add effects, animations or cleanup operations here
+        Destroy(gameObject); // Destroys the boss object
+    }
+
+    // void SpawnSpawner()
+    // {
+    //     if (enemySpawnerPrefab != null)
+    //     {
+    //         GameObject spawner = Instantiate(enemySpawnerPrefab, spawnPoint.position, Quaternion.identity);
+    //         // spawner.SetActive(true); // Ensure the spawner is active when instantiated
+    //         Debug.Log("Spawner Spawned");
+
+    //         SimpleEnemySpawner spawnerScript = spawner.GetComponent<SimpleEnemySpawner>();
+    //         if (spawnerScript != null)
+    //         {
+    //             // spawnerScript.ActivateSpawning(); // Activate spawning if needed
+    //         }
+    //     }
+    // }
 }

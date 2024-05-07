@@ -24,7 +24,7 @@ public class Projectile : MonoBehaviour
     {
         if (hitInfo.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Projectile Collision with Enemy");
+            // Debug.Log("Projectile Collision with Enemy");
             Enemy enemy = hitInfo.GetComponent<Enemy>();
             if (enemy != null)
             {

@@ -31,14 +31,14 @@ public class ProjectilePoolController : MonoBehaviour
     {
         if (projectilePool.Count > 0)
         {
-            Debug.Log("Get Projectile, pool not empty");
+            // Debug.Log("Get Projectile, pool not empty");
             GameObject projectile = projectilePool.Dequeue();
             projectile.SetActive(true);
             return projectile;
         }
         else
         {
-            Debug.Log("Pool Empty");
+            // Debug.Log("Pool Empty");
             GameObject newProjectile = Instantiate(projectilePrefab, Vector3.zero, Quaternion.identity);
             return newProjectile;
         }
