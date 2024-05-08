@@ -6,7 +6,6 @@ using UnityEngine.Pool;
 public class EnemyPoolController : MonoBehaviour
 {
     public static EnemyPoolController Instance;
-
     public GameObject enemyPrefab;
     private Queue<GameObject> enemies = new Queue<GameObject>();
 

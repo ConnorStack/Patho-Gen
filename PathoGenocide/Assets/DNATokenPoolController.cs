@@ -23,8 +23,8 @@ public class DNATokenPoolController : MonoBehaviour
             actionOnGet: (token) => token.SetActive(true),
             actionOnRelease: (token) => token.SetActive(false),
             actionOnDestroy: Destroy,
-            defaultCapacity: 20,
-            maxSize: 100
+            defaultCapacity: 200,
+            maxSize: 10000
         );
 
     }

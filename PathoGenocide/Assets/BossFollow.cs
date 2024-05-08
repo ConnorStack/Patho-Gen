@@ -22,7 +22,7 @@ public class BossFollow : MonoBehaviour
             if (player != null)
             {
                 // Move towards the player continuously
-                Debug.Log("Following");
+                // Debug.Log("Following");
                 Vector3 newPosition = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
                 transform.position = newPosition;
             }

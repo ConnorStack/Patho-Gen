@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class VirusBoss : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class VirusBoss : MonoBehaviour
     public GameObject attackObject;
     private Animator attackAnimator;
     private DamageEffect damageEffect;
+    public VictoryPopup victoryPopup;
 
     void Start()
     {
@@ -109,9 +111,21 @@ public class VirusBoss : MonoBehaviour
 
     void Die()
     {
+        VictoryPopup victoryPopup = FindObjectOfType<VictoryPopup>();
         Debug.Log("Boss defeated!");
         // You can add effects, animations or cleanup operations here
         Destroy(gameObject); // Destroys the boss object
+        // FindObjectOfType<VictoryPopup>().ShowVictoryPopup();
+
+        // Invoke(nameof(ShowVictoryMenu), 2.0f);
+        // SceneManager.LoadScene("MainMenu");
+    }
+
+    void ShowVictoryMenu()
+    {
+        Debug.Log("ShowVictoryMenu");
+        // Assuming the victory menu is another scene
+        SceneManager.LoadScene("MainMenu");
     }
 
 
