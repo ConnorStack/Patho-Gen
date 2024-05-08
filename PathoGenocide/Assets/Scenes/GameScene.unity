@@ -247,7 +247,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -529,7 +529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 2346385520726752255, guid: d7661c5b4fd68f747a250fd236ec09ab, type: 3}
-  spawnRate: 0.2
+  spawnRate: 0.4
   moveDirection: {x: 1, y: 0}
   moveSpeed: 15
   spawnDuration: 30
@@ -634,7 +634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7744425916765515102, guid: 7fcde2d54fd33c74e820b170a5369106, type: 3}
       propertyPath: waitTime
-      value: 60
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 7744425916765515102, guid: 7fcde2d54fd33c74e820b170a5369106, type: 3}
       propertyPath: m_Enabled
@@ -692,6 +692,10 @@ PrefabInstance:
       propertyPath: enemyPrefab
       value: 
       objectReference: {fileID: 1462190758}
+    - target: {fileID: 1167261637077789856, guid: b52da4a94d357a54a808631e16961d96, type: 3}
+      propertyPath: spawnInterval
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1167261637077789856, guid: b52da4a94d357a54a808631e16961d96, type: 3}
       propertyPath: activeDuration
       value: 10
@@ -1586,6 +1590,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1462190758}
     - target: {fileID: 1167261637077789856, guid: b52da4a94d357a54a808631e16961d96, type: 3}
+      propertyPath: spawnInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167261637077789856, guid: b52da4a94d357a54a808631e16961d96, type: 3}
       propertyPath: activeDuration
       value: 10
       objectReference: {fileID: 0}
@@ -1835,7 +1843,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 2346385520726752255, guid: d7661c5b4fd68f747a250fd236ec09ab, type: 3}
-  spawnRate: 0.2
+  spawnRate: 0.4
   moveDirection: {x: -1, y: 0}
   moveSpeed: 15
   spawnDuration: 30
@@ -3636,6 +3644,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6200000, guid: 74efbc8edb404c54ebff7c092baf0aa2, type: 2}
     - target: {fileID: 1502879545138951780, guid: 026ee8bda03de12488f6c728be55f2e8, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1502879545138951780, guid: 026ee8bda03de12488f6c728be55f2e8, type: 3}
       propertyPath: m_Points.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -4473,16 +4485,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1783606147588563505, guid: 21ac59852041c014b949de4feb7faf48, type: 3}
+      propertyPath: speed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1783606147588563505, guid: 21ac59852041c014b949de4feb7faf48, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 3505196083676824972}
     - target: {fileID: 2901502253232249125, guid: 21ac59852041c014b949de4feb7faf48, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.25
+      value: 8787
       objectReference: {fileID: 0}
     - target: {fileID: 2901502253232249125, guid: 21ac59852041c014b949de4feb7faf48, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.16
+      value: 530
       objectReference: {fileID: 0}
     - target: {fileID: 2901502253232249125, guid: 21ac59852041c014b949de4feb7faf48, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4516,14 +4532,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3878239082054543620, guid: 21ac59852041c014b949de4feb7faf48, type: 3}
+      propertyPath: legHealth
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4220176085429273452, guid: 21ac59852041c014b949de4feb7faf48, type: 3}
       propertyPath: enemyPrefab
       value: 
       objectReference: {fileID: 1871787331}
+    - target: {fileID: 5335285410334009981, guid: 21ac59852041c014b949de4feb7faf48, type: 3}
+      propertyPath: legHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5749588885083578893, guid: 21ac59852041c014b949de4feb7faf48, type: 3}
+      propertyPath: totalHealth
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 5749588885083578893, guid: 21ac59852041c014b949de4feb7faf48, type: 3}
       propertyPath: victoryPopup
       value: 
       objectReference: {fileID: 1832276755}
+    - target: {fileID: 6194672593992928905, guid: 21ac59852041c014b949de4feb7faf48, type: 3}
+      propertyPath: legHealth
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 6292699399833348996, guid: 21ac59852041c014b949de4feb7faf48, type: 3}
       propertyPath: m_Name
       value: VirusBoss
@@ -4536,6 +4568,10 @@ PrefabInstance:
       propertyPath: enemyPrefab
       value: 
       objectReference: {fileID: 1871787331}
+    - target: {fileID: 8509278184825679894, guid: 21ac59852041c014b949de4feb7faf48, type: 3}
+      propertyPath: legHealth
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4727,6 +4763,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1462190758}
     - target: {fileID: 1167261637077789856, guid: b52da4a94d357a54a808631e16961d96, type: 3}
+      propertyPath: spawnInterval
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167261637077789856, guid: b52da4a94d357a54a808631e16961d96, type: 3}
       propertyPath: activeDuration
       value: 10
       objectReference: {fileID: 0}
@@ -4899,6 +4939,26 @@ PrefabInstance:
       propertyPath: projectilePrefab
       value: 
       objectReference: {fileID: 803061549}
+    - target: {fileID: 6537866664762683563, guid: 688264f60459ef949b1dea101d637dd1, type: 3}
+      propertyPath: minLevelForBasicMelee
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6537866664762683563, guid: 688264f60459ef949b1dea101d637dd1, type: 3}
+      propertyPath: minLevelForSpecialMelee
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 6537866664762683563, guid: 688264f60459ef949b1dea101d637dd1, type: 3}
+      propertyPath: basicRangedAttackCooldown
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7810571402547803431, guid: 688264f60459ef949b1dea101d637dd1, type: 3}
+      propertyPath: currentLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7810571402547803431, guid: 688264f60459ef949b1dea101d637dd1, type: 3}
+      propertyPath: dnaTokenCount
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7810571402547803431, guid: 688264f60459ef949b1dea101d637dd1, type: 3}
       propertyPath: gameOverController
       value: 
